@@ -172,6 +172,7 @@ h1 {
 .btn.secondary:hover {
     background: var(--accent-soft);
 }
+
 /* --- 研究の柱 (カードレイアウト) --- */
 .features {
     padding: 80px 0;
