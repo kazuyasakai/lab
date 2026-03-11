@@ -281,3 +281,89 @@ footer {
     color: #888;
     font-size: 0.9rem;
 }
+
+/* --- 研究テーマ紹介ページ共通：レスポンシブ・テーブル --- */
+
+/* PC・スマホ共通の基本設定 */
+.history-section table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+/* PC用：横並びの表形式 */
+.history-section th {
+    text-align: left;
+    padding: 20px 15px;
+    color: var(--accent);
+    border-bottom: 1px solid #eee;
+    width: 30%;
+    vertical-align: top;
+    font-weight: 700;
+}
+
+.history-section td {
+    padding: 20px 15px;
+    border-bottom: 1px solid #eee;
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* スマホ用：カード形式への変換（画面幅 768px 以下） */
+@media (max-width: 768px) {
+    .history-section table, 
+    .history-section thead, 
+    .history-section tbody, 
+    .history-section th, 
+    .history-section td, 
+    .history-section tr {
+        display: block;
+        width: 100%;
+    }
+
+    .history-section tr {
+        margin-bottom: 25px;
+        border: 1px solid #eee;
+        border-radius: 12px;
+        background: #fff;
+        padding: 15px;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.03);
+    }
+
+    .history-section th {
+        border-bottom: none;
+        padding: 0 0 10px 0;
+        font-size: 1.1rem;
+        color: var(--accent); /* 各ページの --accent が適用されます */
+    }
+
+    .history-section td {
+        border-bottom: none;
+        padding: 0;
+        font-size: 0.95rem;
+        color: #555;
+    }
+	
+	/* ナビゲーションメニュー全体の隙間を狭める */
+    nav ul {
+        gap: 12px; /* 24px から半分に縮小 */
+    }
+
+    /* メニュー全体の文字サイズを少し下げる */
+    nav ul li a {
+        font-size: 0.85rem;
+    }
+
+    /* 「Join Us」ボタンの個別調整 */
+    nav ul li:last-child a {
+        padding: 4px 10px !important; /* 内側の余白を削って幅を圧縮 */
+        white-space: nowrap;          /* 絶対に改行させない */
+    }
+	
+	@media (max-width: 480px) {
+	    .logo span {
+	        display: none; /* スマホでは @ TMU を消してロゴを短くする */
+	    }
+	}
+}
+
