@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>暗号論 | Sakai Lab Coursework</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --accent: #2B6CB0; /* 学部座学：ロイヤルブルー */
+            --bg-joke: #F0F7FF; 
+        }
+        
+        .joke-column {
+            background-color: var(--bg-joke);
+            border-left: 5px solid var(--accent);
+            padding: 25px;
+            margin: 40px 0;
+            border-radius: 0 10px 10px 0;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .joke-title {
+            font-weight: bold;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 15px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+            border-bottom: 1px dashed var(--accent);
+            padding-bottom: 5px;
+            width: fit-content;
+        }
+
+        .syllabus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        h2.section-title {
+            margin-top: 80px;
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Sakai Lab<span> @ TMU</span></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#coursework">Coursework</a></li>
+                <li><a href="joinus.html">Join Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container" style="padding-top: 100px;">
+        <h1>暗号論 <span style="font-size: 1.2rem; color: #666;">(Cryptography)</span></h1>
+        
+        <p class="description">
+            現代社会の信頼を支える「暗号技術」を、直感や経験に頼る「芸術」から、数学的基盤に基づく「科学」へと昇華させ、厳密な安全性証明の観点から深く学びます。
+        </p>
+
+        <section id="outline">
+            <h2>Course Content</h2>
+            <div class="syllabus-grid">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>古典暗号論</h3>
+                        <p>シーザー暗号からエニグマまで。歴史的な暗号方式の構造と、全探索や頻度分析による解読手法を学びます。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>現代暗号論</h3>
+                        <p>数学的原理に基づくパラダイムシフト。計算量的安全性の定義と、証明可能安全性の基礎理論を修得します。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>完全秘匿暗号</h3>
+                        <p>シャノンの定理と情報論的安全性。ワンタイムパッドの理論的優位性と、実用上の限界を理解します。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>秘密鍵暗号</h3>
+                        <p>ストリーム暗号（PRG）からブロック暗号（AES）まで。CBCやCTRなど各モードの安全性と特性を比較します。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>メッセージ認証</h3>
+                        <p>真正性と完全性の保証。MACスキーム、ハッシュ関数、および認証付き暗号（AEAD）の構成を学びます。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>公開鍵暗号</h3>
+                        <p>数論的困難性を利用したRSA暗号やデジタル署名。鍵配布問題の解決と、信頼の基盤となる数学を詳解します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="section-title">Lecture Notes: 暗号理論が描くロマンス</h2>
+
+        <div class="joke-column">
+            <span class="joke-title">#01: The Brute-force Romance (古典暗号)</span>
+            <p>
+                彼は彼女の心を開くために、毎日違うアプローチ（鍵）を試しました。<br>
+                1日目は花、2日目は詩、3日目は高級車……。<br><br>
+                ついに100日目、彼女は「もう来ないで」とドアを閉めました。<br>
+                彼は嘆きました。<br>
+                「古典暗号と同じだ。鍵の空間（Key Space）をすべて試した頃には、相手の有効期限（Expiration）が切れているんだ。」
+            </p>
+        </div>
+
+        <div class="joke-column">
+            <span class="joke-title">#02: The One-night Pad (完全秘匿暗号)</span>
+            <p>
+                暗号学者がバーで出会った女性と、完璧に秘匿された一夜（Perfect Secrecy）を過ごしました。<br>
+                翌朝、彼女が「また会える？」と聞くと、彼はプロフェッショナルな顔で首を振りました。<br><br>
+                「無理だよ。One-time pad のルールを忘れたのかい？<br>
+                最高の機密性を保つには、同じ鍵（夜）を二度と使ってはいけないんだ。<br>
+                もし明日も君に会ったら、僕たちの関係はただのストリーム暗号に成り下がってしまう（Reuse attack）からね。」
+            </p>
+        </div>
+
+        <div class="joke-column">
+            <span class="joke-title">#03: The Stream Cipher Marriage (ストリーム暗号)</span>
+            <p>
+                ストリーム暗号のような夫婦がいました。<br>
+                彼らは互いに同期（Synchronization）している間は完璧な会話を楽しめましたが、<br>
+                ある日、夫が妻の誕生日の日付を1日読み飛ばしてしまいました。<br><br>
+                それ以来、夫が何を言っても妻には意味不明なノイズ（Garbage）にしか聞こえなくなりました。<br>
+                一度ビットがずれたら、二度と元の会話（平文）には戻れないのです。
+            </p>
+        </div>
+
+        <div class="joke-column">
+            <span class="joke-title">#04: The ECB Housewife (ブロック暗号モード)</span>
+            <p>
+                夫が毎日、同じ時間に「ただいま」と言い、同じ時間に「ビール」と言います。<br>
+                妻はついに爆発しました。<br><br>
+                「あなたの行動は ECB モードそのものよ！<br>
+                毎日同じ入力に対して同じ出力しか返さないから、中身を見なくても次に何を言うかバレバレだわ。<br>
+                たまにはランダムな初期化ベクトル（IV）を導入して、私の予測を裏切ってみたらどうなの？」
+            </p>
+        </div>
+
+        <div class="joke-column">
+            <span class="joke-title">#05: The MAC of Faith (メッセージ認証コード)</span>
+            <p>
+                浮気を疑われた男が、自分のスマホの全メッセージに MAC を付与して彼女に渡しました。<br>
+                「ほら、これで内容が改ざんされていないことが証明できるだろう？」<br><br>
+                彼女はスマホを投げ返しました。<br>
+                「問題はデータの完全性（Integrity）じゃないわ。<br>
+                あなたの『秘密鍵』を誰が共有しているか（Shared Key）よ！」
+            </p>
+        </div>
+
+        <div class="joke-column">
+            <span class="joke-title">#06: The One-way Heart (ハッシュ関数)</span>
+            <p>
+                彼は過去の過ちを悔い、彼女に「やり直したい」と乞いました。<br>
+                彼女は冷たく答えました。<br><br>
+                「愛はハッシュ関数（One-way function）のようなものよ。<br>
+                一度出力された結果（別れ）から、元の入力（出会った頃の気持ち）を逆算（Pre-image attack）することなんて、現代のコンピュータをすべて使っても不可能なの。」
+            </p>
+        </div>
+
+        <div class="joke-column">
+            <span class="joke-title">#07: An Asymmetric Divorce (公開鍵暗号)</span>
+            <p>
+                「僕の愛は公開鍵だ、誰にでもオープンだよ」と豪語していた男が、離婚を切り出されました。<br>
+                理由を聞くと、妻は言いました。<br><br>
+                「あなたの公開鍵は立派だけど、私の心を開くための秘密鍵（Private Key）をどこかに紛失しちゃったみたい。<br>
+                もう二度と、あなたとの対話プロトコルは成立しないわ。」
+            </p>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sakai Lab, Tokyo Metropolitan University.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>情報セキュリティ特論 | Sakai Lab Coursework</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --accent: #4A5568; /* 大学院/上級講義：スレート・インディゴ */
+            --bg-joke: #F7FAFC; 
+        }
+        
+        .joke-column {
+            background-color: var(--bg-joke);
+            border-left: 5px solid var(--accent);
+            padding: 25px;
+            margin: 40px 0;
+            border-radius: 0 10px 10px 0;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .joke-title {
+            font-weight: bold;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 15px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+            border-bottom: 1px dashed var(--accent);
+            padding-bottom: 5px;
+            width: fit-content;
+        }
+
+        .syllabus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        h2.section-title {
+            margin-top: 80px;
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Sakai Lab<span> @ TMU</span></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#coursework">Coursework</a></li>
+                <li><a href="joinus.html">Join Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container" style="padding-top: 100px;">
+        <h1>情報セキュリティ特論 <span style="font-size: 1.2rem; color: #666;">(Advanced Information Security)</span></h1>
+        
+        <p class="description">
+            公開鍵暗号の数理的基礎から、ゼロ知識証明、秘密共有、電子投票などの高度なプロトコルまで。現代社会の信頼基盤を支える暗号技術の応用展開を深く掘り下げます。
+        </p>
+
+        <section id="outline">
+            <h2>Course Content</h2>
+            <div class="syllabus-grid">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>公開鍵暗号の発展</h3>
+                        <p>RSA、離散対数、平方剰余、そして楕円曲線暗号。異なる数学的問題に基づく暗号構成法を比較・検証します。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>認証とデジタル署名</h3>
+                        <p>メッセージの真正性と否認防止。エンティティ認証プロトコルと、署名スキームの安全性を議論します。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>コミットメントと秘密共有</h3>
+                        <p>情報を隠したまま存在を証明する手法や、信頼できない複数の主体に秘密を分散させる閾値理論を学びます。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>ゼロ知識証明</h3>
+                        <p>「知識そのもの」を一切明かすことなく、自分がその知識を持っていることだけを証明する驚異的なプロトコルを詳解します。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>電子投票とデジタルキャッシュ</h3>
+                        <p>匿名性と妥当性の両立。ブラインド署名などを用いた、次世代の社会システムを支える応用技術を検討します。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>秘密計算と準同型暗号</h3>
+                        <p>データを暗号化したまま計算を行う。プライバシー保護とデータ活用を両立させる最先端のセキュリティ技術を概観します。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="section-title">Lecture Notes: 応用暗号論が描く深遠なロマンス</h2>
+
+        <div class="joke-column">
+            <span class="joke-title">#01: The RSA Paradox (RSA暗号)</span>
+            <p>
+                「二人の仲を裂く（素因数分解する）ことなんて、誰にもできないよ」<br>
+                彼は巨大な数（公開鍵）を彼女に贈りました。二人の愛の強さは、数学的な困難さに守られているはずでした。<br><br>
+                しかし、彼女がふと彼のスマホを覗いたとき、付箋に書かれた「pとq（素数）」を見つけてしまいました。<br>
+                どんなに巨大な鍵で心に鍵をかけても、物理的なトラップドア（秘密のメモ）が露出してしまえば、関係の崩壊は多項式時間で終わるのです。
+            </p>
+        </div>
+
+        <div class="joke-column">
+            <span class="joke-title">#02: Discrete Logarithm Regret (離散対数)</span>
+            <p>
+                「どうしてあんなひどいことを言ったの？」<br>
+                彼女の問いに対し、彼は「指数関数的に感情が高ぶってしまったんだ」と言い訳しました。<br><br>
+                放たれた言葉（結果）から、その原因となった感情（離散対数）を逆算するのは、現代のスーパーコンピュータを以てしても不可能です。<br>
+                一度一方向関数に投げ込まれた悪意は、二度と元の穏やかな平文には戻らないのです。
+            </p>
+        </div>
+
+        <div class="joke-column">
+            <span class="joke-title">#03: Quadratic Residue Choice (平方剰余)</span>
+            <p>
+                「私のこと、本当に好き？ それとも遊び？」<br>
+                彼女が突きつけたのは、平方剰余（QR）か非剰余（QNR）かという、究極の二値判定でした。<br><br>
+                彼は「法N」という社会的な体面を保ちつつ、彼女の問いに答えようとしましたが、<br>
+                彼女は既に、彼の過去の行動からヤコビ記号を計算し、彼が「平方根を持たない男」であることを確信していました。
+            </p>
+        </div>
+
+        <div class="joke-column">
+            <span class="joke-title">#04: Elliptic Curve Distance (楕円曲線暗号)</span>
+            <p>
+                「最短距離で君に会いに行くよ」<br>
+                そう豪語した彼でしたが、二人の距離は楕円曲線上の加法のように、奇妙な軌跡を描いていました。<br><br>
+                直線の先にあるはずの彼女は、無限遠点（∞）へと遠ざかり、<br>
+                どれだけスカラー倍（努力）を重ねても、二人が再び重なるポイントを見つけることはできませんでした。
+            </p>
+        </div>
+
+        <div class="joke-column">
+            <span class="joke-title">#05: The Non-repudiation Fight (ディジタル署名)</span>
+            <p>
+                「そんな約束、した覚えはないわ」<br>
+                彼女の「否認」に対し、彼はかつてのラブレターを突きつけました。<br><br>
+                そこには、彼女固有のハッシュ値と秘密鍵によって生成されたデジタル署名が、鮮明に残っていました。<br>
+                「数学的に、これは君以外には書けないんだ」<br>
+                証拠（署名）が完璧であればあるほど、愛が義務という名の「検証アルゴリズム」に成り下がったことを、彼は悟りました。
+            </p>
+        </div>
+
+        <div class="joke-column">
+            <span class="joke-title">#06: Mutual Authentication (認証)</span>
+            <p>
+                「あなたが本当に『私の愛する人』であることを証明して」<br>
+                深夜の電話、彼女はチャレンジ＆レスポンス認証を要求してきました。<br><br>
+                彼が答えた秘密の合言葉は、昨日と全く同じものでした。<br>
+                「残念。それはリプレイ攻撃対策がされていないわ」<br>
+                彼女は冷たく電話を切り、セッションを強制終了（Disconnect）しました。
+            </p>
+        </div>
+
+        <div class="joke-column">
+            <span class="joke-title">#07: Secret Commitment (コミットメント)</span>
+            <p>
+                彼は将来の夢を箱に入れ、鍵をかけて彼女に預けました。<br>
+                「中身はまだ秘密だけど、僕は決してこの約束を変えない（秘匿性と拘束性）」<br><br>
+                しかし、数年後に彼が箱を開ける鍵（Open）を渡したとき、彼女は既にその箱を捨てていました。<br>
+                約束の内容が正しいかどうかを検証する前に、検証者（彼女）のタイムアウトが発生していたのです。
+            </p>
+        </div>
+
+        <div class="joke-column">
+            <span class="joke-title">#08: Threshold Heartbreak (秘密共有)</span>
+            <p>
+                「僕の浮気の証拠は、三人の友人に分けて預けてある」<br>
+                彼は(2,3)の閾値秘密共有スキームでリスクを分散したつもりでした。<br><br>
+                しかし、親友二人がバーで意気投合し、秘密のシェアを合体（ラグランジュ補間）させてしまったのです。<br>
+                三人のうち二人が裏切れば、秘密は一瞬で復元されます。信頼の閾値設定を誤った代償は、あまりに大きなものでした。
+            </p>
+        </div>
+
+        <div class="joke-column">
+            <span class="joke-title">#09: The Cave of Secrets (ゼロ知識証明)</span>
+            <p>
+                「浮気してないって信じて！」と叫ぶ彼に、彼女はアリババの洞窟のような試練を与えました。<br>
+                「あなたが本当に誠実なら、私の知らない裏口から帰ってきてみせて。でも、その方法は教えないで。」<br><br>
+                彼は何度も彼女の指定する出口から現れ、潔白を証明しました（確率的な納得）。<br>
+                彼女は彼が浮気していないことを「知って」いましたが、彼がどうやってアリバイを作ったのかという「知識」は、永遠にゼロのままでした。
+            </p>
+        </div>
+
+        <div class="joke-column">
+            <span class="joke-title">#10: Anonymous Proposal (電子投票)</span>
+            <p>
+                「僕との結婚に賛成の人は、この箱に票を入れてください」<br>
+                彼女一人の食卓で、彼は電子投票システムを導入しました。<br><br>
+                集計の結果は「反対：1票」。<br>
+                匿名性は完璧に守られていましたが、有権者が彼女一人しかいない以上、<br>
+                その1票が誰のものかは、暗号化するまでもなく明白でした。
+            </p>
+        </div>
+
+        <div class="joke-column">
+            <span class="joke-title">#11: The Blind Kiss (デジタルキャッシュ)</span>
+            <p>
+                「私の愛を、誰にも知られずに使いたい（匿名性）」<br>
+                彼女は彼にブラインド署名を求めました。彼は中身が見えない封筒に、言われるがまま署名（承諾）をしました。<br><br>
+                後日、その署名が「別の男との婚約届」に使われていることを知ったとき、<br>
+                彼はブラインド署名の恐ろしさと、デジタルキャッシュの二重使用（裏切り）の重さを痛感しました。
+            </p>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sakai Lab, Tokyo Metropolitan University.</p>
+    </footer>
+</body>
+</html>

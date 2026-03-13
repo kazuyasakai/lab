@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>現代計算機アーキテクチャ | Sakai Lab Coursework</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --accent: #2B6CB0; /* 学部座学：ロイヤルブルー */
+            --bg-joke: #F0F7FF; 
+        }
+        
+        .joke-column {
+            background-color: var(--bg-joke);
+            border-left: 5px solid var(--accent);
+            padding: 25px;
+            margin: 40px 0;
+            border-radius: 0 10px 10px 0;
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .joke-title {
+            font-weight: bold;
+            color: var(--accent);
+            display: block;
+            margin-bottom: 15px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.95rem;
+            letter-spacing: 0.05em;
+            border-bottom: 1px dashed var(--accent);
+            padding-bottom: 5px;
+            width: fit-content;
+        }
+
+        .syllabus-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        h2.section-title {
+            margin-top: 80px;
+            color: var(--accent);
+            border-bottom: 2px solid var(--accent);
+            padding-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">Sakai Lab<span> @ TMU</span></div>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#coursework">Coursework</a></li>
+                <li><a href="joinus.html">Join Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container" style="padding-top: 100px;">
+        <h1>現代計算機アーキテクチャ <span style="font-size: 1.2rem; color: #666;">(Modern Computer Architecture)</span></h1>
+        
+        <p class="description">
+            プロセッサの高速化技術から記憶階層の最適化まで。現代の圧倒的な計算能力がいかなる設計思想（アーキテクチャ）の上に成り立っているのかを、理論と定量的評価の両面から探求します。
+        </p>
+
+        <section id="outline">
+            <h2>Course Content</h2>
+            <div class="syllabus-grid">
+                <div class="card">
+                    <div class="card-content">
+                        <h3>パフォーマンスの定量化</h3>
+                        <p>ムーアの法則からAmdahlの法則まで。CPU時間やスループットを指標とした、計算機システムの科学的な評価手法を学びます。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>メモリアーキテクチャ</h3>
+                        <p>記憶階層（階層構造）の設計。時間的・空間的局所性を利用し、低速なメインメモリの影響を最小化する戦略を修得します。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>キャッシュ最適化</h3>
+                        <p>キャッシュミスの分類（3C）と、ブロックサイズ、セットアソシアティビティなどのパラメータ最適化を詳解します。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>パイプラインとハザード</h3>
+                        <p>RISC-Vをベースとした命令のオーバーラップ実行。データ・分岐ハザードを「フォワーディング」等で解決する手法を学びます。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>命令レベルの並列化 (ILP)</h3>
+                        <p>動的スケジューリングと投機実行。パイプラインのストールを回避し、命令流から最大限の並列性を抽出する技術を修得します。</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content">
+                        <h3>スレッドレベルの並列化 (TLP)</h3>
+                        <p>マルチコア・マルチプロセッサ。キャッシュコヒーレンスプロトコル（MSI/MESI）と、並列プログラムの同期と整合性を学びます。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <h2 class="section-title">Lecture Notes: アーキテクチャが描くロマンス</h2>
+
+        <div class="joke-column">
+            <span class="joke-title">#01: Moore's Law of Expectations (パフォーマンス定量化)</span>
+            <p>
+                「君への愛は年々進化しているよ」と彼は言いました。<br>
+                しかし彼女は、ムーアの法則を独自の解釈で適用していました。<br><br>
+                「ええ、あなたのパフォーマンスが18ヶ月ごとに2倍になるのは当然として、<br>
+                私の『要求リスト』の集積密度も18ヶ月ごとに2倍になっているわ。<br><br>
+                去年はディナーだけで満足（Speedup）できたけど、今年は指輪と海外旅行を同時実行（Parallelism）してくれないと、<br>
+                私の満足度という指標（Metric）は向上しないのよ。」
+            </p>
+        </div>
+
+        <div class="joke-column">
+            <span class="joke-title">#02: Locality of Affection (メモリアーキテクチャ)</span>
+            <p>
+                「最近の僕たち、全然噛み合ってないね」と彼女が言いました。<br>
+                彼は「時間的局所性（昨日話したこと）」も「空間的局所性（近くにある思い出）」も無視して、<br>
+                全く新しい不満ばかりをぶつけていたからです。<br><br>
+                彼女の脳内キャッシュは常にミス（Miss）を繰り返し、心は低速なメインメモリ（過去の全記録）を読み取りに行ってしまいました。<br>
+                愛を長続きさせたいなら、新しい情報を詰め込む前に、まず共有済みのデータをヒット（Hit）させる努力が必要です。
+            </p>
+        </div>
+
+        <div class="joke-column">
+            <span class="joke-title">#03: The Cold Start Conflict (キャッシュ最適化)</span>
+            <p>
+                久しぶりのデート、会話が全く弾みません。<br>
+                典型的な「コールド・スタート（Compulsory Miss）」の状態です。<br><br>
+                彼は焦って、かつて彼女が好きだった話題を次々と投入しました（プリフェッチ）。<br>
+                しかし、彼女の興味は既に別のドメインへ移っており、キャッシュは激しくコンフリクト（Conflict Miss）を起こしました。<br><br>
+                一度汚れた（Dirty）データをライトバック（謝罪）せずに、新しい命令を書き込もうとしても、システムのハングアップは免れません。
+            </p>
+        </div>
+
+        <div class="joke-column">
+            <span class="joke-title">#04: Data Hazard Jealousy (パイプライン)</span>
+            <p>
+                「今の発言、さっきの話と矛盾してない？」<br>
+                結婚記念日のレストランで、深刻なデータハザードが発生しました。<br><br>
+                前の会話の結果（Ｗrite）が出る前に、次の話題（Read）を始めてしまったために、依存関係が崩壊したのです。<br>
+                二人の間に「フォワーディング（根回し）」の回路が備わっていれば、<br>
+                ディナーの雰囲気がパイプライン・フラッシュ（全台無し）になることはなかったでしょう。
+            </p>
+        </div>
+
+        <div class="joke-column">
+            <span class="joke-title">#05: Speculative Regret (ILP / 投機実行)</span>
+            <p>
+                「彼女はきっと、このサプライズを喜ぶはずだ」<br>
+                彼はその推測に基づき、勝手に高価な指輪を買い、高級ホテルを予約しました（投機実行）。<br><br>
+                しかし、予測は外れ、彼女は「今は仕事に集中したい」と告げました。<br>
+                彼の人生のパイプラインは激しくロールバックされ、<br>
+                費やしたコストと時間はすべて「無効な命令」として闇に消えていきました。
+            </p>
+        </div>
+
+        <div class="joke-column">
+            <span class="joke-title">#06: The TLP Play-boy (TLP / マルチスレッド)</span>
+            <p>
+                「僕は君だけを愛しているよ」と言いながら、<br>
+                彼は時間を細かく区切り、複数の相手と同時並行で付き合っていました。<br><br>
+                アーキテクチャ用語で言うところの「スレッドレベルの並列化（TLP）」です。<br>
+                彼はコンテキスト・スイッチの天才でしたが、ある日、共有アカウントの設定ミスで同期（Synchronization）に失敗しました。<br><br>
+                一貫性プロトコルが破綻した瞬間、彼のマルチスレッドな生活はデッドロックに陥り、回復不能なシステムダウンを迎えました。
+            </p>
+        </div>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sakai Lab, Tokyo Metropolitan University.</p>
+    </footer>
+</body>
+</html>

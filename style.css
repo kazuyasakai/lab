@@ -144,11 +144,11 @@ h1 {
 /* --- ボタン --- */
 /* ボタンの基本サイズとレイアウトを更新 */
 .cta-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 20px;
-    flex-wrap: wrap;
-    margin-top: 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); /* 3列に固定 */
+    gap: 15px;
+    max-width: 960px; /* ボタンのサイズに合わせて調整 */
+    margin: 40px auto 0;
 }
 
 .btn {
@@ -344,6 +344,11 @@ footer {
         color: #555;
     }
 	
+	.cta-buttons {
+        grid-template-columns: repeat(2, 1fr); /* 768px以下では3列から2列に変更 */
+        gap: 10px; /* 隙間を少し狭くして画面幅を有効活用 */
+    }
+	
 	/* ナビゲーションメニュー全体の隙間を狭める */
     nav ul {
         gap: 12px; /* 24px から半分に縮小 */
@@ -363,6 +368,9 @@ footer {
 	@media (max-width: 480px) {
 	    .logo span {
 	        display: none; /* スマホでは @ TMU を消してロゴを短くする */
+	    }
+	    .cta-buttons {
+	        grid-template-columns: 1fr;
 	    }
 	}
 }

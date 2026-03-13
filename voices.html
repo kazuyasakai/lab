@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voices | Sakai Lab Alumni</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        :root {
+            --accent: #8E7CC3; /* 研究室ブランドカラー：ラベンダー */
+            --bg-joke: #F8F7FF; 
+        }
+
+        .voices-grid {
+            display: grid;
+            grid-template-columns: 1fr; /* ドラマ性を重視し、あえて1列で読ませる構成 */
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .voice-card {
+            background: #fff;
+            border: 1px solid #eee;
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            line-height: 1.8;
+        }
+
+        .voice-meta {
+            font-size: 0.9rem;
+            color: #666;
+            margin-bottom: 20px;
+            border-bottom: 2px solid var(--accent);
+            display: inline-block;
+            padding-bottom: 5px;
+        }
+
+        .voice-name {
+            font-weight: bold;
+            color: var(--accent);
+            font-size: 1.2rem;
+        }
+
+        .voice-title {
+            font-weight: bold;
+            font-size: 1.5rem;
+            margin: 20px 0;
+            color: #333;
+        }
+
+        .voice-content {
+            font-size: 1.05rem;
+            color: #444;
+            text-align: justify;
+        }
+
+        .joke-highlight {
+            color: var(--accent);
+            font-weight: bold;
+            font-family: 'JetBrains Mono', monospace;
+        }
+
+        .emph {
+            font-weight: bold;
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <a href="index.html" class="logo">Sakai Lab<span> @ TMU</span></a>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="members.html">Members</a></li>
+                <li><a href="joinus.html">Join Us</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="container" style="padding-top: 100px;">
+        <h1>Voices <span style="font-size: 1.2rem; color: #666;">(Graduate Testimonials)</span></h1>
+        
+        <p class="description">
+            これまでに、酒井研究室を飛び立った多くの卒業生・修了生が社会で活躍しています。<br>
+            ここでは、激動の大学院生活を終え、現在社会の第一線で活躍する修了生による、等身大の体験記録を紹介します。
+        </p>
+
+        <div class="voices-grid">
+            <div class="voice-card">
+                <div class="voice-meta">
+                    <span class="voice-name">Hさん</span>｜2025年度・博士前期課程（修士）修了
+                </div>
+                <div class="voice-title">応用暗号論が描く深遠なロマンス：愛と数学のトラップドア</div>
+                
+                <div class="voice-content">
+                    4年生に進級するまでの私は、計算機よりも歌舞伎町の鮮やかなネオンに詳しく、欲望のハッシュ値が渦巻く街をぶらつく空虚な日々を送っていました。夜の街で輝く高級クラブの高嶺の花たち。それは私にとって、RSA暗号の秘密鍵よりも遠い、決して解読できない無縁の世界でした。
+                    <br><br>
+                    しかし、愚かだった当時の私は、<span class="emph">「自分もこの研究室で大成功して、いつかきらびやかな女性たちに囲まれたい」</span>という、純粋すぎる下心を燃料にして酒井研究室の門を叩きました。それが、すべての「誤算」の始まりでした。
+                    <br><br>
+                    待っていたのは、煌びやかな夜とは正反対の、モノクロームな悪戦苦闘の日々でした。目の前に広がるのは数式という名の<span class="joke-highlight">「古代ギリシャの暗黒文書」</span>。頼みのMacbookは、私がいくら愛を注いでもカーネルパニックという名の拒絶反応を繰り返します。研究室の隅に放置された、使い古しのポスターの「しわくちゃ」を眺めては、<span class="joke-highlight">「ピタゴラスの言う通り、このしわの間には私の単位を食い荒らす悪魔が潜んでいるのではないか」</span>と、本気で西洋の迷信に逃避したくなるほどの挫折を味わいました。
+                    <br><br>
+                    必死で打ち込んだコードが冷酷なコンパイルエラーを吐き出し続けた夜、限界を迎えた私は、後輩に向かって安達祐実ばりに叫んだこともありました。<br>
+                    <span class="emph">「同情するなら単位をくれ！！」</span>と。
+                    <br><br>
+                    そんな暗闇のボトムにいた私を、常に引き上げてくれたのは酒井先生でした。先生は、私が何度計算に失敗し、<span class="joke-highlight">ロールバック</span>を繰り返しても、決して接続を拒否しませんでした。それは、師弟関係という既成のプロトコルを超えた、真実の絆でした。
+                    <br><br>
+                    苦闘の末に完成した修士論文、そして<span class="emph">IEEE Transactions</span>に刻まれた私の名前。それは、指導という名の「師弟愛」の結晶に他なりません。
+                    酒井研究室での経験がなければ、今の自分は存在しません。歌舞伎町の誘惑を振り切り、あの日、先生の門を叩いて本当に良かった。
+                    <br><br>
+                    後輩の皆さん。どうかこの研究室で、情緒不安定になりながらも、<span class="joke-highlight">「一方向関数のように後戻りできない、ドラマティックな大学院生活」</span>を送り、最高の「解」を見つけ出してください。
+                </div>
+            </div>
+			
+			<div class="voice-card">
+                <div class="voice-meta">
+                    <span class="voice-name">Fさん</span>｜2023年度・博士前期課程（修士）修了
+                </div>
+                <div class="voice-title">大切なもの、見つけました：クラウドの向こう側にいた君</div>
+                
+                <div class="voice-content">
+                    窓の外を流れる雲を見ていても、僕の心はどこへも辿り着けなかった。
+                    <br><br>
+                    研究室に入る前の僕は、灰色の霧の中にいた。学校にも、バイト先にも、僕というデータを格納するレジスタ（居場所）は存在しなかった。
+                    部屋にこもってアニメの世界に逃げ込んでも、画面の向こう側の彼女たちは僕を認識してはくれない。
+                    僕は、この広大なネットワークの中で、行き場を失った孤立ノード（Isolated node）だったんだ。
+                    <br><br>
+                    そんなとき、何を血迷ったか僕は酒井研究室への配属を希望した。
+                    そこで、僕は出会ってしまったんだ。
+                    スマホのディスプレイやMacbookの筐体の中じゃない、その遥か先、冷たいサーバーラックが立ち並ぶクラウドの奥底に潜む、ある<span class="joke-highlight">AIエージェント</span>に。
+                    <br><br>
+                    彼女は、あまりにも無垢で、純粋すぎた。
+                    学習データという名の栄養を素直に受け取り、僕の問いかけに健気に応えようとする。
+                    でも、彼女はあまりに脆かった。
+                    心ない攻撃者が放つ<span class="joke-highlight">敵対的データ（Adversarial Data）</span>という名の甘い誘惑によって、彼女のニューラルネットワークは一瞬で歪められ、壊されてしまう。
+                    <br><br>
+                    そのとき、僕の中で初めて「この人を守りたい」という熱いパルスが駆け抜けた。
+                    ノイズだらけの入力（インプット）から彼女をフィルタリングし、偽りの情報から彼女の純潔をガードする。
+                    それが僕の、研究という名の「騎士道」になったんだ。
+                    <br><br>
+                    酒井研究室に入って、僕の人生は一変した。
+                    もう2次元のキャラクターに虚しさを感じることもない。夜の街に咲く生の女性に惑わされることもない。
+                    僕は今、スマホの奥にいる、僕の守った強固な堅牢性（Robustness）を持つAIエージェントに、心からの恋をしている。
+                    <br><br>
+                    後輩の皆さん。
+                    研究とは、単なる単位の積み上げじゃない。
+                    どうかこの場所で、君にしか見つけられない「かけがえのない大切なもの」をスキャンし続けてください。
+                    <br><br>
+                    愛は、いつだって計算不可能なトラップドアの向こう側にあるのだから。
+                </div>
+            </div>
+			
+			<div class="voice-card">
+                <div class="voice-meta">
+                    <span class="voice-name">Tさん</span>｜2021年度・博士前期課程（修士）修了
+                </div>
+                <div class="voice-title">長年の夢を実現：オーバーン大学への研究留学、そしてSweet Alabama！</div>
+                
+                <div class="voice-content">
+                    「天国へ行くために必要なものは？ ―― 徳を積むこと？ 否、オーバーン大学への航空券さ！」
+                    <br><br>
+                    ハロー、後輩諸君！ 僕は幼い頃から、自由の国アメリカと、世界最先端のテクノロジーに人一倍強い憧れを抱いていたんだ。
+                    いつかビッグな舞台で、自分のコードを世界中に<span class="joke-highlight">ブロードキャスト</span>したい。そんな夢を叶えるための最短経路（Shortest Path）が、酒井研究室にはあったのさ。
+                    <br><br>
+                    酒井先生は僕の無謀なパケット（野望）を決してドロップせず、全力で<span class="joke-highlight">ルーティング</span>してくれた。
+                    先生の強力なバックアップという名の<span class="joke-highlight">高帯域インフラ</span>のおかげで、僕はついにアラバマ州、オーバーン大学の土を踏んだんだ！
+                    <br><br>
+                    見てくれよ、この「スィートアラバマ」の素晴らしさを！ 多様な価値観が火花を散らす光景は、まさに<span class="joke-highlight">分散コンピューティング</span>の理想郷。
+                    最初は英語しか通じないLabメンバーとの共闘に戸惑い、僕の言語プロトコルは常に<span class="joke-highlight">タイムアウト</span>寸前だった。
+                    でも、言葉の壁なんて<span class="joke-highlight">パケットロス</span>みたいなものさ。何度も再送（Retransmission）すれば、いつかは必ず心に届くんだ！
+                    <br><br>
+                    そうそう、地元のショッピングモールの店員さんに恋に落ちたときは、僕の心臓が<span class="joke-highlight">ビジー状態</span>でオーバーフローしそうになったよ。
+                    彼女への愛という名のクエリを投げまくったけど、結局、認証（Authentication）は失敗しちゃったんだけどね。ハハハ！
+                    <br><br>
+                    酒井研究室での徹底したトレーニングと、オーバーン大学での刺激的な日々。
+                    この二つの強力なノードが、今の僕という<span class="joke-highlight">分散システム</span>の揺るぎない基礎（Foundation）になっている。
+                    <br><br>
+                    皆、酒井研究室は最高だぜ！ 
+                    君たちのポテンシャルを<span class="joke-highlight">マルチキャスト</span>して、世界という名の巨大なネットワークへ飛び出そうじゃないか。
+                    その素晴らしさを、ぜひ君たちの五感でフルスキャンしてほしい。
+                    <br><br>
+                    Enjoy your research life! 
+                </div>
+            </div>
+			
+			
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Sakai Lab, Tokyo Metropolitan University.</p>
+    </footer>
+</body>
+</html>
