@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Crypt Lab #04 | 公開鍵暗号の衝撃</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">Sakai_Lab_Crypt:<span>~/Public_Key</span></div>
+            <a href="../cryptography.html" class="home-link">← 講義概要へ戻る</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container" style="padding-top: 140px;">
+    
+    <nav class="log-nav">
+        <strong>LAB NAVIGATION:</strong>
+        <a href="crypt-lab1.html">01_CLASSIC</a>
+        <a href="crypt-lab2.html">02_PRIVATE_KEY</a>
+        <a href="crypt-lab3.html">03_MAC_HASH</a>
+        <span class="current-tag">04_PUBLIC_KEY</span>
+    </nav>
+    
+	<article class="log-card">
+        <div class="log-meta">EXERCISE #014 // RSA_MATH_TOOLS // 2026.04.02</div>
+        
+        <h2>Lab #14: 公開鍵暗号の夜明け ―― 逆転と速度の数理</h2>
+        
+        <p>
+            RSA暗号を支える数学的アルゴリズムの実装を行う。公開鍵から秘密鍵を導出するための<strong>拡張ユークリッド法</strong>と、巨大な指数計算を現実的な時間で処理する<strong>平方乗算法</strong>は、公開鍵暗号の心臓部である。
+        </p>
+
+        <div class="code-block-header">04_pubkey/rsa_math.py</div>
+        <pre><code># 実行結果：数論的アルゴリズムの検証
+# Test 1: gcd(299, 221) = 13, x = 3, y = -4 (拡張ユークリッド法)
+# Test 2: 15^-1 mod 47 = 22 (モジュロ逆元：秘密鍵の導出)
+# Test 3: 11^5 mod 37 = 27 (平方乗算法：高速な暗号化)</code></pre>
+
+        <div class="result-box">
+            <h4>🔢 Evidence: Number Theory in Action</h4>
+            <p>
+                以下の実行ログ（lab4_rsamath.jpg）を確認せよ。
+                講義資料の例題通り、15の逆元が22であること、およびべき乗剰余計算が正しく行われていることが確認できる。これが「落とし戸（トラップドア）」を制御するための数学的ツールである。
+            </p>
+            
+            <img src="lab4_rsamath.jpg" alt="RSA数学ツールの実行結果">
+            
+            <p class="result-analysis">
+                <strong>【効率と機密の両立】:</strong> <br>
+                拡張ユークリッド法を用いることで、公開鍵 $e$ から秘密鍵 d を O(\log^3 N) の計算量で導出できる。
+                また、平方乗算法は単純な繰り返しをビット展開に置き換えることで、計算量を O(\log e) まで削減する。
+                この効率性の差こそが、公開鍵暗号を実用たらしめる鍵となっている。
+            </p>
+        </div>
+        
+        <div class="joke-column joke-rejection">
+            <span class="joke-title"># 今日の教訓: 運命の逆元を求めて</span>
+            <p style="font-size: 0.95rem;">
+                諸君、愛の囁きを巨大な数の中に閉じ込めるだけでは不十分だ。
+                それを解き放つためには、世界でただ一人、君だけが持つ「逆元（秘密鍵）」が必要になる。
+                <br><br>
+                どれほど高い壁（公開鍵 e）で心を閉ざしても、数理の「落とし戸」を知る者だけは、一瞬で真実に辿り着くことができる。
+                平方乗算法で計算の壁を飛び越え、拡張ユークリッド法で君だけの鍵をビルドせよ。
+                この小さな関数たちが、やがて巨大な素数の海から君の機密を守り抜く盾となるのだ。
+            </p>
+        </div>
+
+        <blockquote class="joke-column" style="background-color: transparent; border-left-color: var(--accent-crypt); border-radius: 0; color: #555; font-style: italic;">
+            数論の深淵に潜む一方向性は、知る者と知らざる者を分かつ境界線である。<br>
+            効率こそが正義であり、正しく「逆」を計算する知識こそが、真の力を生む。
+        </blockquote>
+
+        <p style="font-weight: bold; text-align: right; color: var(--accent-crypt); margin-top: 30px; font-size: 1.1rem;">
+            "Go West!" ―― 運命の逆元を掌握し、計算の地平線に偽造不能な真実の城を築け。
+        </p>
+    </article>
+	
+	<article class="log-card">
+        <div class="log-meta">EXERCISE #015 // RSA_FULL_CYCLE // 2026.04.02</div>
+        
+        <h2>Lab #15: RSA 暗号の実演 ―― 素数から紡がれる不変の機密</h2>
+        
+        <p>
+            RSA暗号の鍵生成、暗号化、復号の全工程を実装する。
+            2つの素数 p, q から生成された公開鍵 (e, N) を用い、トラップドア（秘密鍵 d）を知る者だけが真実を復元できることを実証する。
+        </p>
+
+        <div class="code-block-header">04_pubkey/rsa_crypt.py</div>
+        <pre><code># 実行結果：RSAフルサイクルのシミュレーション
+# パラメータ: p=3, q=5, m=7
+# 鍵生成: N=15, φ(N)=8, 公開鍵(3, 15), 秘密鍵(3, 15)
+# 暗号化: 7^3 mod 15 = 13
+# 復号化: 13^3 mod 15 = 7
+# Result: [Success] 暗号化と復号のサイクルが正しく完了しました。</code></pre>
+
+        <div class="result-box">
+            <h4>🗝️ Evidence: The Magic of Trapdoor Function</h4>
+            <p>
+                実行ログ（lab4_rsacrypt.jpg）を確認せよ。
+                講義資料 24ページの例題通り、平文 m=7 が暗号文 c=13 へと姿を変え、秘密鍵 d を用いたべき乗計算によって再び正確に m=7 へと還っている。
+            </p>
+            
+            <img src="lab4_rsacrypt.jpg" alt="RSA暗号システムの実行結果ログ">
+            
+            <p class="result-analysis">
+                <strong>【一方向性と秘密の共有】:</strong> <br>
+                暗号化に使用される公開鍵 (e, N) は誰にでも公開できるが、復号に必要な d は \phi(N) = (p-1)(q-1) を知らなければ計算できない。
+                この「因数分解の困難性」こそが、鍵を事前に手渡すことなく機密を届けるという、公開鍵暗号の魔法の正体である。
+            </p>
+        </div>
+        
+        <div class="joke-column joke-alert">
+            <span class="joke-title"># 今日の教訓: 素数という名の種、因数分解という名の壁</span>
+            <p style="font-size: 0.95rem;">
+                諸君、ついに我々は「鍵を渡さずに秘密を届ける」という暗号論の聖杯を手にした。
+                p と q という二つの種から、巨大な N という迷宮が生まれ、その迷宮の出口（秘密鍵 d）は君だけが知っている。
+                <br><br>
+                わずか数行の数式が、現代のインターネットを、そして君たちのプライバシーを支えているのだ。
+                だが忘れるな。今回の N=15 という小さな世界では、迷宮の壁はあまりに低く、誰にでも出口が見えてしまう。
+                愛の重さに耐えうる機密を築くなら、その種（素数）はもっと巨大で、深遠なものでなければならない。
+            </p>
+        </div>
+
+        <blockquote class="joke-column" style="background-color: transparent; border-left-color: var(--accent-crypt); border-radius: 0; color: #555; font-style: italic;">
+            公開された鍵が扉を閉ざし、秘められた鍵が真実を解き放つ。<br>
+            この非対称の美しさが、孤独な通信者たちを繋ぐ唯一の架け橋である。
+        </blockquote>
+
+        <p style="font-weight: bold; text-align: right; color: var(--accent-crypt); margin-top: 30px; font-size: 1.1rem;">
+            "Go West!" ―― 運命の因数分解は、今、始まったばかりだ。。
+        </p>
+    </article>
+	
+	<article class="log-card">
+        <div class="log-meta">EXERCISE #016 // RSA_FACTOR_ATTACK // 2026.04.02</div>
+        
+        <h2>Lab #16: 因数分解攻撃 ―― 崩れ去る迷宮と計算の暴力</h2>
+        
+        <p>
+            RSA暗号の安全性の根拠は「大きな整数の因数分解は困難である」という数学的仮定に依存している。
+            本実習では、公開鍵 N が小さい場合に、計算機による試し割り法で p, q を特定し、秘密鍵 $d$ を完全に復元できることを実証した。
+        </p>
+
+        <div class="code-block-header">04_pubkey/rsa_factor_attack.py</div>
+        <pre><code># 実行結果：公開鍵 N からの秘密鍵奪取
+# ターゲット: p=31, q=41, N=1271, φ(N)=1200
+# 攻撃プロセス: N=1271 を素因数分解 -> p=31, q=41 を特定
+# 秘密鍵の復元: d = e^-1 mod φ(N) = 7^-1 mod 1200 = 343
+# 検証結果: 平文 m=123 が暗号化・復号を経て一致 [Success]</code></pre>
+
+        <div class="result-box">
+            <h4>⚔️ Evidence: The Collapse of Security Hypothesis</h4>
+            <p>
+                実行ログ（lab4_factoring.jpg）を確認せよ。
+                公開情報である N=1271 さえあれば、攻撃者は \phi(N)=1200 を導き出し、正規の鍵所有者と同じ秘密鍵 d=343 を算出できることが示されている。
+            </p>
+            
+            <img src="lab4_factoring.jpg" alt="RSA因数分解攻撃の実行結果ログ">
+            
+            <p class="result-analysis">
+                <strong>【パラメータ選択の重要性】:</strong> <br>
+                資料 23ページにある通り、公開鍵 e は \phi(N) と互いに素（gcd(e, \phi(N))=1）でなければならない。
+                今回の実験では、攻撃者が適切な e=7 を選択し直すことで、数学的制約をクリアしつつ防御を無効化した。
+                現代の 2048-bit 鍵は、この「因数分解」に宇宙の寿命を超える時間を強いることで安全性を保っている。
+            </p>
+        </div>
+        
+        <div class="joke-column joke-rejection">
+            <span class="joke-title"># 今日の教訓: ガードの緩い公開鍵（彼女）にご用心</span>
+            <p style="font-size: 0.95rem;">
+                諸君、公開鍵暗号とは「誰にでも教えていい情報」を入り口にするという、極めて大胆な試みだ。
+                だが今回の N=1271 というパラメータは、例えるなら「豊田駅前で1秒に1回ナンパされるほどガードの緩い彼女」のようなものだ。
+                <br><br>
+                君は「僕たちの愛は N という迷宮に守られている」と信じていたかもしれない。
+                しかし、その迷宮があまりに低すぎた。
+                通りすがりの攻撃者（試し割りプログラム）がちょっと声をかけただけで、彼女は自分の正体（素数 p, q）をあっさり白状し、君しか持っていないはずの心の合鍵（秘密鍵 d）を複製させてしまったのだ。
+                <br><br>
+                機密を守り抜くためには、百戦錬磨のナンパ師（計算機）が数万年かけても声をかけきれないほどの、圧倒的な「ビットの壁」が必要なのだ。
+            </p>
+        </div>
+
+        <blockquote class="joke-column" style="background-color: transparent; border-left-color: var(--accent-crypt); border-radius: 0; color: #555; font-style: italic;">
+            安全とは、攻撃コストが利益を上回る状態を指す。<br>
+            因数分解の壁が崩れる時、我々はより巨大な、より深遠な「数」という名の城を築かねばならない。
+        </blockquote>
+
+        <p style="font-weight: bold; text-align: right; color: var(--accent-crypt); margin-top: 30px; font-size: 1.1rem;">
+            "Go West!" ―― 運命の相手に、因数分解が困難なほどの鉄壁の貞操観念を教育せよ。
+        </p>
+    </article>
+	
+	<article class="log-card">
+        <div class="log-meta">EXERCISE #017 // DIGITAL_SIGNATURE // 2026.04.02</div>
+        
+        <h2>Lab #17: デジタル署名 ―― 数理が刻む「誓い」の印</h2>
+        
+        <p>
+            公開鍵暗号のプロセスを反転させ、秘密鍵を用いてメッセージの真正性（Authenticity）を証明する<strong>デジタル署名</strong>を実装する。
+            ハッシュ関数と組み合わせる <strong>Hash-then-Sign パラダイム</strong> により、任意長のメッセージに対して効率的かつ安全な署名を実現した。
+        </p>
+
+        <div class="code-block-header">04_pubkey/rsa_sign.py</div>
+        <pre><code># 実行結果：意志の証明と改ざん検知
+# 1. 署名生成: メッセージ "I love you..." に対し秘密鍵で sigma を計算
+# 2. 検証実行: 公開鍵を用いて H(m) == sigma^e mod N を確認 -> [✅ 正当な署名]
+# 3. 改ざん試行: 内容を "I love money..." に書き換え -> [❌ 警告：改ざん検知！]
+# Result: 1-bit の差異も許さない、厳格な真正性を確認。</code></pre>
+
+        <div class="result-box">
+            <h4>🖋️ Evidence: Immutable Proof of Intent</h4>
+            <p>
+                実行ログを確認せよ。
+                正規のメッセージに対しては「正当」と判定される一方で、わずかに内容を書き換えた <code>tampered_msg</code> に対しては即座に検証が失敗している。
+                これは、署名 \sigma が「そのメッセージ」と「その秘密鍵」の組み合わせでしか成立しないことを示している。
+            </p>
+            
+            <img src="lab4_rsasign.jpg" alt="RSAデジタル署名の実行結果ログ">
+            
+            <p class="result-analysis">
+                <strong>【否認防止の数理】:</strong> <br>
+                資料 23ページにある通り、署名は秘密鍵 sk を持つ本人しか生成できない。
+                一度署名が付与されれば、後から「そんなことは言っていない」と主張することは数学的に不可能（否認防止）となる。
+                公開鍵 pk は、世界中の誰に対しても君の潔白を証明する「開かれた証言者」として機能するのだ。
+            </p>
+        </div>
+        
+        <div class="joke-column joke-rejection">
+            <span class="joke-title"># 今日の教訓: 魂のハッシュ、偽造不能な誓い</span>
+            <p style="font-size: 0.95rem;">
+                諸君、言葉は容易に歪められ、愛の誓いは容易に偽造される。
+                だが、ハッシュという名の「魂の刻印」を君だけの秘密鍵で封印した時、その言葉は永遠の真正性を手にする。
+                <br><br>
+                公開鍵 pk を持つ世界中の誰もが、君の潔白を証明できる。
+                だが、それは同時に「一度口にした誓い」から一生逃げられないことも意味している。
+                愛の言葉に署名するなら、その重みを噛みしめたまえ。因数分解の壁が崩れない限り、君の署名は歴史という名の不変のレジャーに刻まれ続けるのだ。
+            </p>
+        </div>
+
+        <blockquote class="joke-column" style="background-color: transparent; border-left-color: var(--accent-crypt); border-radius: 0; color: #555; font-style: italic;">
+            真正性の証明とは、自らの秘密を賭けて真実を保証する行為である。<br>
+            公開された鍵が潔白を叫び、秘められた鍵が意志を封じ込める。
+        </blockquote>
+
+        <p style="font-weight: bold; text-align: right; color: var(--accent-crypt); margin-top: 30px; font-size: 1.1rem;">
+            "Go West!" ―― 運命の告白は、署名なしでは信用するな。
+        </p>
+    </article>
+	
+</main>
+
+<footer>
+    &copy; 2026 Kazuya Sakai. Cryptography: Protecting your secrets since BC 100.
+</footer>
+
+</body>
+</html>

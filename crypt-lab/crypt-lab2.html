@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Crypt Lab #02 | 秘密鍵暗号の誘惑</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">Sakai_Lab_Crypt:<span>~/Private_Key</span></div>
+            <a href="../cryptography.html" class="home-link">← 講義概要へ戻る</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container" style="padding-top: 140px;">
+    
+    <nav class="log-nav">
+        <strong>LAB NAVIGATION:</strong>
+        <a href="crypt-lab1.html">01_CLASSIC</a>
+        <span class="current-tag">02_PRIVATE_KEY</span>
+        <a href="crypt-lab3.html">03_MAC_HASH</a>
+        <a href="crypt-lab4.html">04_PUBLIC_KEY</a>
+    </nav>
+    
+    <article class="log-card">
+        <div class="log-meta">EXERCISE #005 // BBS_STREAM_CIPHER // 2026.04.02</div>
+        
+        <h2>Lab #05: ストリーム暗号 ―― 1ビットの機密と計算の壁</h2>
+        
+        <p>
+            情報理論的安全性（完全秘匿性）の限界 を超え、我々は「計算量的安全性」の領域へ足を踏い入れた。
+            今回は、素因数分解の困難性に安全性の根拠を置く <strong>Blum-Blum-Shub (BBS) 生成器</strong> を用い、ビット単位で情報を保護するストリーム暗号を実装した。
+        </p>
+
+        <div class="code-block-header">02_privkey/bbs_stream.py</div>
+        <pre><code># 実行結果：シード 100 から生成された BBS ストリームによる XOR 演算
+# 平文 (m): You love me but I hate you
+# 平文（HEX）: 596f75206c6f...
+# 暗号文（HEX）: ff25118626...</code></pre>
+
+        <div class="result-box">
+            <h4>⚙️ Evidence: PRG-based Encryption</h4>
+            <p>
+                以下の実行ログ（lab2_stream.jpg）を確認せよ。
+                短い鍵（シード）から生成された「疑似乱数ストリーム」 G(k) が、平文の HEX データと XOR 演算され、統計的な偏りが完全に破壊された暗号文へと変貌している。
+            </p>
+            
+            <img src="lab2_stream.jpg" alt="BBSストリーム暗号の実行結果">
+            
+            <p class="result-analysis">
+                <strong>【計算量的安全性の証明】:</strong> <br>
+                復号された HEX が平文のそれと 1-bit の狂いもなく一致している（Verification Success）ことに注目せよ。
+                無限の計算力を持たない攻撃者にとって、この BBS 出力は真正乱数と「計算量的に識別不可能」であり、実用上極めて強固な秘匿性を担保している。
+            </p>
+        </div>
+        
+        <div class="joke-column joke-rejection">
+            <span class="joke-title"># 今日の教訓: 運命の同期（Synchronization）</span>
+            <p style="font-size: 0.95rem;">
+                「君は私を愛しているが、私は君が憎い（You love me but I hate you）」という、決定的に非対称な感情。
+                この残酷な真実も、BBS 生成器を通せば等しく「識別不能なノイズ」へと収束する。
+                <br><br>
+                この暗号が解けるのは、私と同じ「シード（秘密鍵）」を共有し、運命のビットを同期させている者だけだ。
+                私と君の間に、その同期（Synchronization）が失われたその刹那、君が送ってきた「愛（Love）」のパケットは、私の元では永遠に解読不能なエラーとして処理される。
+                もし君がこの HEX の羅列から真意を読み解きたいのなら、まずは N=899 を素因数分解するだけの執念を見せてほしい。
+            </p>
+        </div>
+
+        <blockquote class="joke-column" style="background-color: transparent; border-left-color: var(--accent-crypt); border-radius: 0; color: #555; font-style: italic;">
+            一方向関数という檻の中に、真実を封じ込めよ。<br>
+            多項式時間の計算という「現実」の壁が、君の秘密を永遠の静寂へと変える。
+        </blockquote>
+
+        <p style="font-weight: bold; text-align: right; color: var(--accent-crypt); margin-top: 30px; font-size: 1.1rem;">
+            "Go West!" ―― 運命の歯車を同期させ、情報の荒野を貫く真実のラインをビルドせよ。
+        </p>
+    </article>
+	
+	<article class="log-card">
+        <div class="log-meta">EXERCISE #006 // CPA_SECURE_ENCRYPTION // 2026.04.02</div>
+        
+        <h2>Lab #06: CPAセキュアな暗号 ―― 一貫性のなさが生む機密</h2>
+        
+        <p>
+            これまでの決定的な暗号スキーム（シーザーや単純なストリーム暗号）は、同じ鍵で同じ平文を暗号化すると必ず同じ暗号文が出力されるという致命的な弱点を持っていた。
+            今回は、<strong>擬似ランダム関数（PRF）</strong>と<strong>乱数（nonce）</strong>を組み合わせることで、選択平文攻撃（CPA）に耐えうる確率的アルゴリズムを実装した。
+        </p>
+
+        <div class="code-block-header">02_privkey/cpa_enc.py</div>
+        <pre><code># 実行結果：同じ平文を2回暗号化しても、異なる暗号文が生成される
+# 平文: b'You love me but I hate you'
+# 1回目暗号文: &lt;r:5a6eb468d28b9c6701ec93455103e465, s:1e4e21f6200da964076a5bb281bbc8f5&gt;
+# 2回目暗号文: &lt;r:c410685334c57113c71e45bb40658891, s:3fd33b3ca9000b806a8a118598b088d4&gt;</code></pre>
+
+        <div class="result-box">
+            <h4>🛡️ Evidence: Probabilistic Encryption</h4>
+            <p>
+                以下の実行ログ（lab2_cpaenc.jpg）を確認せよ。
+                暗号化のたびに新しい乱数 r が生成され、それに基づいたパッド F_k(r) が作られることで、同一のメッセージから全く異なる暗号文 s が出力されている。
+            </p>
+            
+            <img src="lab2_cpaenc.jpg" alt="CPAセキュアな暗号化の実行結果">
+            
+            <p class="result-analysis">
+                <strong>【選択平文攻撃への耐性】:</strong> <br>
+                攻撃者が任意の平文を暗号オラクルに投げ、その結果を学習できたとしても、チャレンジ暗号文で使用される乱数 r が重複しない限り、機密性は維持される。
+                これが「複数暗号文識別不可能性」を物理的な計算コストによって克服した現代暗号の標準的な姿である。
+            </p>
+        </div>
+        
+        <div class="joke-column joke-rejection">
+            <span class="joke-title"># 今日の教訓: 振れ幅こそが「解読不能」の正体</span>
+            <p style="font-size: 0.95rem;">
+                「君は私を愛しているが、私は君が憎い（You love me but I hate you）」というメッセージを君に二度送った。
+                実行ログを見てほしい。一度目と二度目、私の態度は 1-bit も重なることなく、全く異なる「ノイズ」として出力されている。
+                <br><br>
+                一貫性のない人間だと私を責めるのかい？ 
+                だが、暗号論においてこの「振れ幅（Randomness）」こそが、君という攻撃者から私の本心を隠し通すための最強の防壁（CPA Security）なのだ。
+                同じ言葉を繰り返しても、二度と同じ表情を見せない ―― そんな私の「擬似ランダムな心」を、君の計算能力で識別（Indistinguishability）することなど不可能なのだよ。
+            </p>
+        </div>
+
+        <blockquote class="joke-column" style="background-color: transparent; border-left-color: var(--accent-crypt); border-radius: 0; color: #555; font-style: italic;">
+            暗号化とは、意図的に「偶然」を付加する行為である。<br>
+            決定的な運命を拒絶し、確率の霧の中に真実を紛れ込ませよ。
+        </blockquote>
+
+        <p style="font-weight: bold; text-align: right; color: var(--accent-crypt); margin-top: 30px; font-size: 1.1rem;">
+            "Go West!" ―― 運命の乱数を引き当て、二度と繰り返されることのない「今」を刻み込め。
+        </p>
+    </article>
+	
+	<article class="log-card">
+        <div class="log-meta">EXERCISE #007 // ECB_IMAGE_VULNERABILITY // 2026.04.02</div>
+        
+        <h2>Lab #07: ECBモードの脆弱性 ―― 隠しきれない「形」の正体</h2>
+        
+        <p>
+            ブロック暗号を最も単純に適用した <strong>ECB (Electronic Code Block) モード</strong> の安全性を検証する。
+            このモードは各ブロックを独立して暗号化するため、平文に存在する統計的なパターンが暗号文にもそのまま残存してしまう性質を持つ。
+        </p>
+
+        <div class="code-block-header">02_privkey/ecb_image_attack.py</div>
+        <pre><code># 実行結果：東京都立大学ロゴの暗号化
+# 入力 (input.png): 864,000 bytes
+# モード: ECB (各ブロック 16バイト独立処理)
+# 保存先: output_ecb.png</code></pre>
+
+        <div class="result-box">
+            <h4>🖼️ Evidence: Pattern Leakage</h4>
+            <p>
+                以下の実行結果（lab2_ebc.jpg）を確認せよ。
+                暗号化されたはずの <code>output_ecb.png</code> に、元の東京都立大学のロゴの輪郭や文字の形がはっきりと浮かび上がっている。
+            </p>
+            
+            <img src="lab2_ebc.jpg" alt="ECBモードによる画像暗号化の失敗例">
+            
+            <p class="result-analysis">
+                <strong>【一貫性の罠】:</strong> <br>
+                ロゴの背景や単色部分など、同じデータを持つ平文ブロックが連続する場合、それらはすべて同じ暗号文ブロックへと変換される。
+                この「決定的な性質」により、暗号を解読せずとも情報の全体像を識別できてしまう。これは現代暗号が求める「識別不可能性」を満たしておらず、盗聴者に対して安全ではないことを示している。
+            </p>
+        </div>
+        
+        <div class="joke-column joke-alert">
+            <span class="joke-title"># 今日の教訓: 隠したつもりの「癖」にご用心</span>
+            <p style="font-size: 0.95rem;">
+                諸君、この無残に透けて見えたロゴを見てほしい。
+                表面上は砂嵐のように見えても、同じ入力を同じ鍵で処理し続ける ECB のような愚直さは、暗号論においては「無防備」と同義だ。
+                <br><br>
+                どれだけ「秘密」だと言い張っても、君の行動パターン（平文ブロック）が一定である限り、その形は意図せず外界へ透かされてしまう。
+                誰にも本心を悟られたくないのであれば、自分の中に「連鎖（Chain）」や「乱数」を取り入れ、予測不能な振る舞いをビルドすることだ。
+            </p>
+        </div>
+
+        <blockquote class="joke-column" style="background-color: transparent; border-left-color: var(--accent-crypt); border-radius: 0; color: #555; font-style: italic;">
+            一貫性は美徳だが、暗号においては脆弱性となる。<br>
+            単調な繰り返しを拒絶し、文脈（コンテキスト）によって色を変える複雑さを身に纏え。
+        </blockquote>
+
+        <p style="font-weight: bold; text-align: right; color: var(--accent-crypt); margin-top: 30px; font-size: 1.1rem;">
+            "Go West!" ―― 決定的な連鎖を断ち切り、運命を攪拌する CBC モードの深淵へ。
+        </p>
+    </article>
+	
+	<article class="log-card">
+        <div class="log-meta">EXERCISE #008 // CBC_CHAINING // 2026.04.02</div>
+        
+        <h2>Lab #08: CBCモード ―― 過去を糧にする運命の連鎖</h2>
+        
+        <p>
+            前回の ECB モードの敗北を受け、我々は <strong>CBC (Cipher Block Chaining) モード</strong> を導入した。
+            このモードは、暗号化のプロセスに「文脈（Context）」を取り入れ、統計的な偏りを徹底的に攪拌する構造を持つ。
+        </p>
+
+        <div class="code-block-header">02_privkey/cbc_encrypt.py</div>
+        <pre><code># 実行結果：同じ平文ブロックの繰り返しが、異なる暗号文へと変換される
+# 平文: You love me but I hate you. You love me but I hate you.
+# IV: 11876cc73185aab6914f73372550ddc9
+# 暗号文: 0db455498970478a430267c9db8dbbf5...2e0d02d45305106760287c4ad0e1aef9...</code></pre>
+
+        <div class="result-box">
+            <h4>⛓️ Evidence: Diffusion by Chaining</h4>
+            <p>
+                以下の実行ログ（lab2_cbc.jpg）を確認せよ。
+                平文では「You love me but I hate you.」という全く同じ 16 バイトのブロックが繰り返されているにもかかわらず、生成された暗号ブロック（<code>block1</code> と <code>block2</code>）は 1-bit も重なることのない別個のノイズとなっている。
+            </p>
+            
+            <img src="lab2_cbc.jpg" alt="CBCモードによる連鎖暗号化の実行結果">
+            
+            <p class="result-analysis">
+                <strong>【拡散（Diffusion）の完成】:</strong> <br>
+                CBC モードでは、各ブロックを暗号化する前に「一つ前の暗号ブロック」と XOR 演算を行う 。
+                この「連鎖」により、平文の冗長性が暗号文に漏洩することを防ぎ、画像暗号化においても統計的パターンを完全に消失させることが可能となる 。
+            </p>
+        </div>
+        
+        <div class="joke-column joke-rejection">
+            <span class="joke-title"># 今日の教訓: 昨日の私を、今日のスパイスに</span>
+            <p style="font-size: 0.95rem;">
+                「君は私を愛しているが、私は君が憎い（You love me but I hate you）」
+                一度目の告白と二度目の告白。言葉そのものは同じでも、CBC モードの下ではその意味（暗号文）は決定的に異なる。
+                <br><br>
+                なぜなら、二度目の言葉には「一度目の拒絶」という重い過去（Cipher Feedback）が XOR されているからだ。
+                過去の自分を糧にし、常に変化し続ける ―― その「文脈」を共有できない第三者にとって、二人の対話は永遠に解読不能なノイズの連鎖でしかない。
+            </p>
+        </div>
+
+        <blockquote class="joke-column" style="background-color: transparent; border-left-color: var(--accent-crypt); border-radius: 0; color: #555; font-style: italic;">
+            一粒の真珠がいかに美しくとも、それを繋ぐ糸がなければネックレスにはならない。<br>
+            過去の自分を XOR という形で受け入れ、それを糧に次の一歩を刻む連鎖こそが、真の機密を生む。
+        </blockquote>
+
+        <p style="font-weight: bold; text-align: right; color: var(--accent-crypt); margin-top: 30px; font-size: 1.1rem;">
+            "Go West!" ―― 運命の連鎖を構築し、計算の壁を越えたその先の構造美へ。
+        </p>
+    </article>
+	
+	<article class="log-card">
+        <div class="log-meta">EXERCISE #009 // CTR_MODE // 2026.04.30</div>
+        
+        <h2>Lab #09: CTRモード ―― 並列なる運命のカウンタ</h2>
+        
+        <p>
+            我々はついに、現代暗号における「最適解」の一つである <strong>CTR (Counter) モード</strong> に到達した。
+            連鎖を必要とした CBC モードとは異なり、カウンタを用いることで各ブロックを独立させ、並列処理とランダムアクセスを可能にする構造を持つ。
+        </p>
+
+        <div class="code-block-header">02_privkey/ctr_encrypt.py</div>
+        <pre><code># 実行結果：カウンタ（CTR, CTR+1...）による独立したブロック暗号化
+# 平文: You love me but I hate you. You love me but I hate you.
+# 暗号文 (HEX): b1da326af0d73fd3807445a0c57b9b24...
+# 復号文: You love me but I hate you. You love me but I hate you.</code></pre>
+
+        <div class="result-box">
+            <h4>⏱️ Evidence: Parallel Independence</h4>
+            <p>
+                以下の実行ログ（lab2_ctr.jpg）を確認せよ。
+                平文には同じパターンの繰り返しが含まれているが、CBCモードと同様に、出力された暗号文はブロックごとに異なるノイズへと攪拌されている。
+            </p>
+            
+            <img src="lab2_ctr.jpg" alt="CTRモードによる暗号化・復号の実行結果">
+            
+            <p class="result-analysis">
+                <strong>【効率と自由の両立】:</strong> <br>
+                CTR モードでは、初期ベクトル (IV) とカウンタ値を組み合わせた入力 IV || i を擬似ランダム関数 (PRF) に与え、生成された鍵ストリームを平文と XOR する。
+                この方式は、暗号化と復号に全く同じ関数を利用できる効率性を持ちつつ、ブロック間の依存を断ち切ることで、計算資源をフルに活用した高速処理を実現している 。
+            </p>
+        </div>
+        
+        <div class="joke-column joke-rejection">
+            <span class="joke-title"># 今日の教訓: 依存を捨て、自律せよ</span>
+            <p style="font-size: 0.95rem;">
+                「君は私を愛しているが、私は君が憎い（You love me but I hate you）」という一貫した拒絶。
+                CBC モードが「過去（前のブロック）」に縛られた連鎖であったのに対し、CTR モードは「現在（カウンタ）」という個々の数字に真実を託す。
+                <br><br>
+                他人の言葉や過去の経緯に左右されることなく、自らのカウンタを着実に進めること。
+                一見バラバラで並列的なノイズに見えても、共通の秘密（鍵）と運命の起点（IV）を共有する者同士だけが、その沈黙の裏にある真意を復元できるのだ。
+            </p>
+        </div>
+
+        <blockquote class="joke-column" style="background-color: transparent; border-left-color: var(--accent-crypt); border-radius: 0; color: #555; font-style: italic;">
+            過去の重圧を XOR で相殺し、自律的なカウンタを刻め。<br>
+            重複なき運命の数字が、計算の壁の向こう側で君の機密を守る盾となる。
+        </blockquote>
+
+        <p style="font-weight: bold; text-align: right; color: var(--accent-crypt); margin-top: 30px; font-size: 1.1rem;">
+            "Go West!" ―― 運命の乱数を引き当て、二度と繰り返されることのない「今」を刻み込め。
+        </p>
+    </article>
+	
+	<article class="log-card">
+        <div class="log-meta">EXERCISE #010 // IV_COLLISION_ATTACK // 2026.04.02</div>
+        
+        <h2>Lab #10: 運命の衝突 ―― 再利用されたIVと崩壊する秘匿</h2>
+        
+        <p>
+            CTRモードにおける安全性は、初期ベクトル（IV）が「二度と繰り返されない」という前提の上に成り立っている。
+            今回は、誕生日パラドックスによって引き起こされるIVの衝突が、鍵ストリームを相殺し、平文を完全に露出させるプロセスを実証した。
+        </p>
+
+        <div class="code-block-header">02_privkey/iv_collision_attack.py</div>
+        <pre><code># 実行結果：IV再利用による鍵ストリームの相殺攻撃
+# ターゲットの平文 m1: SecretMessageA
+# 攻撃者の平文 m2: I_am_an_attacker
+# 再利用された IV: SAME_IV_1234
+# 解読結果: SecretMessageA (鍵を一切使わずに復元)</code></pre>
+
+        <div class="result-box">
+            <h4>💥 Evidence: Key Stream Cancellation</h4>
+            <p>
+                以下の実行ログ（lab2_ivattack.jpg）を確認せよ。
+                攻撃者は秘密鍵を一切知ることなく、傍受した暗号文 <code>c1</code> と、自ら用意した平文・暗号文ペア <code>(m2, c2)</code> の XOR 演算だけでターゲットの平文 <code>m1</code> を解読している。
+            </p>
+            
+            <img src="lab2_ivattack.jpg" alt="IV衝突攻撃による平文復元の実行結果">
+            
+            <p class="result-analysis">
+                <strong>【機密性の死】:</strong> <br>
+                IVが衝突すると、擬似ランダム関数 (PRF) の出力である鍵ストリームが同一になる。
+                c_1 \oplus c_2 = (m_1 \oplus K) \oplus (m_2 \oplus K) = m_1 \oplus m_2 という単純な数式により、現代暗号の要である「計算の壁」は消滅し、情報は裸同然となる。
+            </p>
+        </div>
+        
+        <div class="joke-column joke-alert">
+            <span class="joke-title"># 今日の教訓: 偶然の重なりは、悲劇の始まり</span>
+            <p style="font-size: 0.95rem;">
+                諸君、暗号論において「二人の運命（IV）が重なること」にロマンの欠片も存在しない。それはただの「致命的なエラー」だ。
+                一度でも運命の数字（IV）を使い回したその瞬間に、君たちが築き上げた鉄壁のガード（計算量的安全性）は霧散する。
+                <br><br>
+                「SecretMessageA」―― 君が鍵をかけて隠したはずのその囁きは、XOR という冷徹な計算式の前で無残にも露出した。
+                誰かに想いを伝えるなら、そのカウンタを二度と戻すな。衝突なき地平を求め、ただ一度きりの「今」を刻み続けろ。
+            </p>
+        </div>
+
+        <blockquote class="joke-column" style="background-color: transparent; border-left-color: var(--accent-crypt); border-radius: 0; color: #555; font-style: italic;">
+            運命の再利用は、秘密の死を招く。<br>
+            誕生日パラドックスの罠を回避せよ。さもなくば、君の沈黙は単なるノイズの皮を被った「剥き出しの真実」に成り下がる。
+        </blockquote>
+
+        <p style="font-weight: bold; text-align: right; color: var(--accent-crypt); margin-top: 30px; font-size: 1.1rem;">
+            "Go West!" ―― 運命を重複させるな。連鎖を断ち切り、新たな機密のステージへ。
+        </p>
+    </article>
+</main>
+
+<footer>
+    &copy; 2026 Kazuya Sakai. Cryptography: Protecting your secrets since BC 100.
+</footer>
+
+</body>
+</html>

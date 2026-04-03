@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Crypt Lab #01 | 古典暗号の罠</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">Sakai_Lab_Crypt:<span>~/Classic_Cryptography</span></div>
+            <a href="../cryptography.html" class="home-link">← 講義概要へ戻る</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container" style="padding-top: 140px;">
+    
+    <nav class="log-nav">
+        <strong>LAB NAVIGATION:</strong>
+        <span class="current-tag">01_CLASSIC</span>
+        <a href="crypt-lab2.html">02_PRIVATE_KEY</a>
+        <a href="crypt-lab3.html">03_MAC_HASH</a>
+        <a href="crypt-lab4.html">04_PUBLIC_KEY</a>
+    </nav>
+    
+    <article class="log-card">
+        <div class="log-meta">EXERCISE #001 // CAESAR_CIPHER // 2026.04.02</div>
+        
+        <h2>Lab #001: シーザー暗号 ―― 2000年前の「既読スルー」対策</h2>
+        
+        <p>
+            「You love me, but I hate you.」<br>
+            そんな、送った瞬間にブロックされそうな衝撃的な本心を、あえて紀元前の技術で包み隠してみる。
+            それが今回の演習、シーザー暗号（単一換字）の実装だ。
+        </p>
+
+        <div class="code-block-header">01_classic/caesar.py</div>
+        <pre><code># 実行コマンド: python3 caesar.py
+# 秘密の鍵（Shift）を使って、愛憎渦巻くメッセージを書き換える。</code></pre>
+
+        <div class="result-box">
+            <h4>🚨 衝撃の実行結果（解読ログ）</h4>
+            <p>
+                以下の画像は、君たちが実装したコードの「なれの果て」だ。
+                25通りの可能性を総当たりする<strong>全数探索（Brute-force）</strong>の前に、隠したはずの本音が、あまりにも無防備に晒されているのがわかるだろう。
+            </p>
+            
+            <img src="lab1_ceaser.jpg" alt="シーザー暗号解読結果">
+            
+            <p class="result-analysis">
+                <strong>【解説】:</strong> <br>
+                画像内の <strong>Key 12</strong> を見てほしい。意味不明な文字列の羅列の中から、突如として残酷な真実が浮上している。
+                これがシーザー暗号の限界だ。鍵の数が「出席番号の最大値」より少ない暗号なんて、現代のコンピュータの前では、ただの「時間の問題」でしかない。
+            </p>
+        </div>
+        
+        <div class="joke-column joke-rejection">
+            <span class="joke-title"># 今日の教訓: 暗号と恋の共通点</span>
+            <p style="font-size: 0.95rem;">
+                「暗号を複雑にするより、相手のパスワードを誕生日から推測する方が早い。」
+                ……なんていうソーシャルエンジニアリングに走ってはいけない。
+                我々が学ぶのは、そんな泥臭い駆け引きではなく、<strong>「いかにして数理的に、絶対に破られない壁を築くか」</strong>だ。
+            </p>
+        </div>
+
+        <p style="font-weight: bold; text-align: right; color: var(--accent-crypt); margin-top: 30px; font-style: italic;">
+            "Go West!" ―― 脆弱なアルゴリズムを理解し、次なる「現代暗号」の地平へ。
+        </p>
+    </article>
+
+    <article class="log-card">
+        <div class="log-meta">LAB #002 // MONOALPHABETIC_CIPHER // 2026.04.02</div>
+        
+        <h2>Lab #02: 単一換字暗号 ―― 「見た瞬間に、それと分かる」</h2>
+        
+        <p>
+            前回のシーザー暗号（25通り）とは打って変わり、今回は $26!$ 通りという天文学的な鍵空間を持つ「単一換字暗号」を実装した。
+            もはや単純な総当たり（Brute-force）は通用しない。 では、我々はいかにしてこの膨大な可能性の中から「真実」を特定するのか。
+        </p>
+
+        <div class="code-block-header">01_classic/mono_alphabetic.py</div>
+        <pre><code># 実行結果：秘密鍵（a-z対応表）がランダムに生成される
+# 平文：It is hard to define what is sexual harassment but I know it when I see it.
+# 暗号：aw af zisn wk nvgajv pziw af fvoliy...</code></pre>
+
+        <div class="result-box">
+            <h4>📸 Evidence: The Stewart Verdict</h4>
+            <p>
+                以下の実行ログ（lab1_mono.jpg）を確認せよ。
+                正しい鍵を適用した瞬間、意味不明な文字列が「法的にも、感情的にも明白なメッセージ」へと変貌する様子が記録されている。
+            </p>
+            
+            <img src="lab1_mono.jpg" alt="単一換字暗号の実行結果">
+            
+            <p class="result-analysis">
+                <strong>【解読の瞬間】:</strong> <br>
+                ポッター・スチュワート判事はかつて、定義の困難な概念について <strong>"I know it when I see it."</strong>（見れば分かる）と述べた。
+                暗号の復号も同様である。正しい鍵が投入され、平文が浮かび上がったその刹那、我々は厳密な統計的検証を待つまでもなく、それが「正解」であることを確信することになる。
+            </p>
+        </div>
+
+        <blockquote class="joke-column" style="background-color: transparent; border-left: 4px solid var(--accent-crypt); color: #555; font-style: italic;">
+            暗号とは、ただ情報を隠すための道具ではない。それは、混沌とした世界の中に「信頼」という名の秩序を、自らの数理で構築する行為である。<br>
+            26! という天文学的な迷宮の先にのみ、真実の対話が許される。
+            諸君、この冷徹かつ美しい数理の鎧を纏い、情報の深淵を支配せよ。
+        </blockquote>
+
+        <p style="font-weight: bold; text-align: right; color: var(--accent-crypt); margin-top: 30px; font-size: 1.1rem;">
+            "Go West!" ―― 鍵の正当性を証明し、知のフロンティアを突き進め。
+        </p>
+    </article>
+	
+	<article class="log-card">
+        <div class="log-meta">EXERCISE #003 // ROW_PERMUTATION // 2026.04.02</div>
+        
+        <h2>Lab #03: 転置式暗号 ―― 文字の順序という名の迷宮</h2>
+        
+        <p>
+            これまでの「換字（置き換え）」とは根本的に異なるアプローチ、<strong>「転置（並べ替え）」</strong> を学ぶ。
+            文字そのものは一切変化していない。 だが、その「居場所」を攪拌することで、メッセージの意味を完全に喪失させる手法だ。
+        </p>
+
+        <div class="code-block-header">01_classic/permutation.py</div>
+        <pre><code># 実行結果：鍵 3521476 に従って列を読み出す
+# 平文 (m): The attach postponed until tomorrow
+# 暗号 (c): EHOTO APELR HCPNM TATUO __NIR TS_TW TOD_O</code></pre>
+
+        <div class="result-box">
+            <h4>📜 Evidence: Columnar Transposition</h4>
+            <p>
+                以下の実行ログ（lab1_perm.jpg）を確認せよ。
+                平文を行列（グリッド）に書き込み、指定された鍵（列番号の読み出し順）に従って縦読みを行うことで、暗号文が生成されている。
+            </p>
+            
+            <img src="lab1_perm.jpg" alt="列転置暗号の実行結果">
+            
+            <p class="result-analysis">
+                <strong>【構造の攪拌】:</strong> <br>
+                アンダーバー <code>_</code> で可視化された空白がバラバラに配置されている点に注目せよ。
+                文字の並び順（構造）を物理的に入れ替えるこのプロセスは、現代暗号においても「拡散（Diffusion）」を担う重要な要素として継承されている。
+            </p>
+        </div>
+        
+        <div class="joke-column joke-alert">
+            <span class="joke-title"># 今日の教訓: 順序がすべてを決める</span>
+            <p style="font-size: 0.95rem;">
+                「明日のデートは延期（Postponed until tomorrow）」という残酷な通知も、列転置にかければ解読不能な文字列の羅列に見える。
+                重要なのは、<strong>「何を伝えるか」ではなく「どの順番で伝えるか」</strong> だ。
+                これは暗号論における転置アルゴリズムの真理であり、同時に人間関係における致命的なバグを回避するための鉄則でもある。
+            </p>
+        </div>
+
+        <blockquote class="joke-column" style="background-color: transparent; border-left-color: var(--accent-crypt); border-radius: 0; color: #555; font-style: italic;">
+            真実は常にそこに存在する。だが、その「並び」を一つ変えるだけで、世界は意味を失ったノイズの塊へと変貌する。<br>
+            秩序を破壊し、再構成せよ。 その先にのみ、真の機密保持が待っている。
+        </blockquote>
+
+        <p style="font-weight: bold; text-align: right; color: var(--accent-crypt); margin-top: 30px; font-size: 1.1rem;">
+            "Go West!" ―― 運命の並び替えを完遂し、知のフロンティアを突き進め。
+        </p>
+    </article>
+
+	<article class="log-card">
+        <div class="log-meta">EXERCISE #004 // ROTOR_CIPHER // 2026.04.02</div>
+        
+        <h2>Lab #04: ローター暗号 ―― 昨日の愛は、今日のノイズ</h2>
+        
+        <p>
+            古典暗号において最も複雑かつ芸術的 とされた<strong>「ローター暗号（エニグマ）」</strong> のエッセンスを体験する。
+            これまでの単一換字 との決定的な違いは、<strong>「1文字ごとに置換ルールが動的に変化する」</strong> 点にある。
+        </p>
+
+        <div class="code-block-header">01_classic/enigma_lite.py</div>
+        <pre><code># 実行結果：1文字打つごとに内部のローターが1クリック回転する
+# 平文 (m): I will never see you
+# 初期鍵: 13
+# 暗号 (c): b xzsr lqofk lra fbx</code></pre>
+
+        <div class="result-box">
+            <h4>⚙️ Evidence: Poly-alphabetic Dynamics</h4>
+            <p>
+                以下の実行ログ（lab1_enigma.jpg）を確認せよ。
+                平文の <code>will</code> に含まれる二つの <code>l</code> や、<code>see</code> に含まれる二つの <code>e</code> が、それぞれ異なる暗号文字へと変換されている。
+            </p>
+            
+            <img src="lab1_enigma.jpg" alt="エニグマ・ライトの実行結果">
+            
+            <p class="result-analysis">
+                <strong>【多表換字の威力】:</strong> <br>
+                同じ文字を打っても出力が異なるため、文字の出現頻度が完全に平均化される。
+                これはローターの初期位置（鍵） だけでなく、回転という「時間軸の要素」が加わることで、解読の難易度を飛躍的に上昇させている。
+            </p>
+        </div>
+        
+        <div class="joke-column joke-rejection">
+            <span class="joke-title"># 今日の教訓: ステート（状態）を共有せよ</span>
+            <p style="font-size: 0.95rem;">
+                「二度と会わない（I will never see you）」 という決別の言葉も、エニグマを通せば一見無意味な文字列へと変換される。
+                だが、この暗号が成立するためには、送り手と受け手が「全く同じ初期状態（秘密鍵）」 を共有していなければならない。
+                皮肉なことに、**完璧に拒絶し合うためにも、二人は密接な同期（Synchronization）を必要とするのだ。**
+            </p>
+        </div>
+
+        <blockquote class="joke-column" style="background-color: transparent; border-left-color: var(--accent-crypt); border-radius: 0; color: #555; font-style: italic;">
+            一貫性のない人間を責めてはいけない。1文字ごとに態度（置換表）を変えることでしか守れない機密があるのだ。<br>
+            ローターが1クリック回転すれば、昨日の「正解」は今日の「エラー」へと成り下がる。
+        </blockquote>
+
+        <p style="font-weight: bold; text-align: right; color: var(--accent-crypt); margin-top: 30px; font-size: 1.1rem;">
+            "Go West!" ―― 運命の歯車を同期させ、予測不可能な未来をビルドせよ。
+        </p>
+    </article>
+
+</main>
+
+<footer>
+    &copy; 2026 Kazuya Sakai. Cryptography: Protecting your secrets since BC 100.
+</footer>
+
+</body>
+</html>

@@ -69,8 +69,65 @@
             現代社会の信頼を支える「暗号技術」を、直感や経験に頼る「芸術」から、数学的基盤に基づく「科学」へと昇華させ、厳密な安全性証明の観点から深く学びます。
         </p>
 
-        <section id="outline">
-            <h2>Course Content</h2>
+        <section id="lab-links" style="margin-top: 60px;">
+            <h2 class="section-title" style="margin-top: 0;">Course Resources &amp; Labs</h2>
+            <p class="description">
+                シラバス及び講義スライド、演習問題、過去問は、都立大のKibacoから資料をダウンロードしてください。以下は、講義で扱うアルゴリズムの実装コードおよび、ブラウザ上で動作を確認できるソースコード一式です。プログラミング課題は中間試験・期末試験に出題しません。あくまで自己学習のためです。
+            </p>
+			
+            <div class="cta-buttons">
+				<a href="https://kibaco.tmu.ac.jp/portal" class="btn primary" target="_blank">
+                    <span class="en">Lecture Slides</span>
+                    <span class="jp">講義スライド（都立大 Kibaco）</span>
+                </a>
+                <a href="https://github.com/kazuyasakai/sakailab-crypt" class="btn primary" target="_blank">
+                    <span class="en">GitHub</span>
+                    <span class="jp">ソースコード・リポジトリ</span>
+                </a>
+                
+                <a href="crypt-lab/crypt-lab1.html" class="btn secondary">
+                    <span class="en">Lab #1</span>
+                    <span class="jp">古典暗号の実習</span>
+                </a>
+
+                <a href="crypt-lab/crypt-lab2.html" class="btn secondary">
+                    <span class="en">Lab #2</span>
+                    <span class="jp">秘密鍵暗号の実習</span>
+                </a>
+
+                <a href="crypt-lab/crypt-lab3.html" class="btn secondary">
+                    <span class="en">Lab #3</span>
+                    <span class="jp">HASHとMACの実習</span>
+                </a>
+
+                <a href="crypt-lab/crypt-lab4.html" class="btn secondary">
+                    <span class="en">Lab #4</span>
+                    <span class="jp">公開鍵暗号の実習</span>
+                </a>
+            </div>
+			
+			<div class="joke-column" style="margin-top: 30px; background-color: #f0f7ff; border-left: 5px solid #2B6CB0;">
+		        <span class="joke-title" style="color: #2B6CB0; border-bottom: 1px dashed #2B6CB0; font-family: 'JetBrains Mono', monospace; font-weight: bold; display: block; margin-bottom: 15px;"># Setup: 演習環境の構築</span>
+		        <p style="margin-bottom: 15px;">ソースコードを実行する場合、以下のコマンドをターミナルで実行して演習用リポジトリを複製し、環境を整えてください。アルゴリズムを正確になぞることも、技術者の重要な素養の一つです。</p>
+		        
+		        <pre style="background: #1a202c; color: #e2e8f0; padding: 20px; border-radius: 8px; font-family: 'JetBrains Mono', monospace; font-size: 0.9rem; overflow-x: auto; line-height: 1.5; border: 1px solid #2d3748;">
+		<span style="color: #718096;"># 1. リポジトリのクローン（複製）</span>
+		$ git clone https://github.com/kazuyasakai/sakailab-crypt.git
+		$ cd sakailab-crypt
+		
+		<span style="color: #718096;"># 2. Python 仮想環境の構築とライブラリ導入</span>
+		$ python3 -m venv .venv
+		$ source .venv/bin/activate
+		$ pip install -r requirements.txt</pre>
+		        
+		        <p style="font-size: 0.85rem; color: #4A5568; margin-top: 15px; background: rgba(43, 108, 176, 0.05); padding: 10px; border-radius: 5px;">
+		            <strong>Note:</strong> Windows環境で <code>source</code> がエラーになる場合は <code>.venv\Scripts\activate</code> を実行すること。
+		        </p>
+		    </div>
+        </section>
+
+		<section id="outline">
+			<h2 class="section-title" style="margin-top: 0;">Course Overview</h2>
             <div class="syllabus-grid">
                 <div class="card">
                     <div class="card-content">
@@ -110,6 +167,7 @@
                 </div>
             </div>
         </section>
+		
 
         <h2 class="section-title">Lecture Notes: 暗号理論が描くロマンス</h2>
 

@@ -26,6 +26,99 @@
     </nav>
 	
 	<article class="log-card">
+	    <div class="log-meta">LOG_ENTRY #010 // 2026.04.04 // DEPRECATED_LEGACY</div>
+	    
+	    <h2>Log #010: NS-2 との決別 ―― 過去は「確定申告」のように整理せよ</h2>
+	    
+	    <p>研究室のストレージの隅に、かつて私が心血を注いだ NS-2 の Tcl スクリプトが眠っている。
+	    モバイルネットワークのパケットが、私の組んだ論理の上を走っていた時代だ。</p>
+	
+	    <div class="log-image-frame" style="margin: 20px 0; text-align: center;">
+	        <img src="log010_tcl.jpg" alt="iSH terminal on iPhone with Harukas view" style="max-width: 100%; border-radius: 8px;">
+	        <p style="font-size: 0.8rem; color: #666;">Multi-path Avoidance Routing in ICDCS 2015</p>
+	    </div>
+	
+	    <div class="code-block" style="background: #2d3436; color: #fab1a0; padding: 20px; border-radius: 10px;">
+	        <code>$ chmod +x sim.sh<br>
+	        $./sim.sh</code>
+	    </div>
+	
+	    <h4>💔 学生諸君へ：失恋と税務書類の類似性</h4>
+	    <p>諸君、過去の失恋にいつまでも CPU リソースを割くのは非効率だ。
+	    私に言わせれば、<strong>過去の失恋は「税務書類」と同じである。</strong></p>
+	    
+	    <ul>
+	        <li><strong>保存の義務</strong>: 経験（データ）として一定期間保持する必要はある。</li>
+	        <li><strong>参照の不要</strong>: 終わった還付申告を毎日読み返す者はいない。</li>
+	        <li><strong>ガベージコレクション</strong>: 監査（反省）が終われば、それはただの物理的な「重み」でしかない。</li>
+	    </ul>
+	
+	    <p style="font-style: italic; color: var(--accent-log);">"Leave them in the past."</p>
+	
+	    <p>NS-2 も、過去の感傷も、今の私にとっては最適化（Optimize）の対象でしかない。
+	    今の私には <strong>ret2root</strong> (MacBook Pro) があり、IoT MQTT の未来がある。
+	    アーカイブされた <code>.tcl</code> ファイルは、二度と実行（Execute）されることのない、静かな歴史の断片だ。</p>
+	
+	    <div class="log-image-frame">
+	        
+	    </div>
+	
+	    <p style="font-weight: bold; text-align: right; color: var(--accent-log); margin-top: 30px;">
+	        "Go West!" ―― 過去という名のバッファを解放し、次なるパケットを待機せよ。
+	    </p>
+	</article>
+	
+	<article class="log-card">
+	    <div class="log-meta">LOG_ENTRY #009 // 2026.04.03 // OS_ABENO_HARUKAS</div>
+	    
+	    <h2>Log #009: 地上300mの「root」権限 ―― 雲上の iSH 環境構築とサーロイン・エクスプロイト</h2>
+	    
+	    <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-log); border-left: 3px solid var(--accent-log); padding-left: 10px;">
+	        [DEVICE]: buckeye (iPhone 15 Pro) / iSH (Alpine Linux)<br>
+	        [PROCESS]: python3, build-base, git, curl... 100% DONE<br>
+	        [LOCATION]: 34.6458° N, 135.5139° E (Altitude: 300m)
+	    </p>
+	
+	    <p>年度末某日。岩橋山を下山し、私は今、大阪の垂直方向の終着点「あべのハルカス」にマウントされている。
+	    目前に並ぶのは、サーロインという名の高エネルギー・ペイロード。
+	    だが、箸を動かす前に、私は <strong>buckeye</strong>（iPhone 15 Pro） のシェルに向き合い、一つのコマンドを打ち込んだ。</p>
+	    
+	    <div class="code-block" style="background: #282c34; color: #abb2bf; padding: 15px; border-radius: 8px; margin: 20px 0;">
+	        <code>localhost:~# echo "altitude 300m" > location.txt</code>
+	    </div>
+	
+	    <h4>🛰️ 意志のインジェクション：location.txt の意味</h4>
+	    <p>このコマンドは、OSレベルの GPS データを書き換える「スプーフィング（偽装）」ではない。
+	    むしろ、ハッカーとしての<strong>「コンテキストの固定（Pinning）」</strong>である。
+	    物理的な高度300mという座標を、iSH という論理空間内のファイルに永続化させる儀式。
+	    たとえ後で地上に降りようとも、このファイルが buckeye に存在する限り、この瞬間の「知の到達点」は失われない。</p>
+	
+	    <div class="log-image-frame" style="margin: 20px 0; text-align: center;">
+	        <img src="log009_ish.jpg" alt="iSH terminal on iPhone with Harukas view" style="max-width: 100%; border-radius: 8px;">
+	        <p style="font-size: 0.8rem; color: #666;">地上300mでビルドされる Python 環境</p>
+	    </div>
+	
+	    <h4>🥩 サーロインによるバッファ・オーバーフロー</h4>
+	    <p>パッケージの展開（Deploy）を見届けながら、会席御前のサーロインを胃袋へ流し込む。
+	    脂質の甘みがニューロンを同期（Sync）させ、登山の疲労を完全に上書き（Override）していく。
+	    「暴食」という名の特権実行。計算資源を使い果たすように、私はこの瞬間、生命の root 権限を掌握した。</p>
+	
+	    <h4 style="border-bottom: 1px solid #ccc; padding-bottom: 5px;">🛠️ 環境構築メモ：バックグラウンド永続化</h4>
+	    <p>iOS の監視網（サンドボックス）を潜り抜けるため、iSH の <code>Keep Awake</code> をオンに設定。
+	    これは位置情報プロトコルを「偽装」し、システムに『私はナビアプリだ』と誤認させることで、
+	    画面オフ後もバックグラウンドでのプロセス生存（Keep-alive）を可能にするエクスプロイトである。</p>
+	
+	    <blockquote style="margin-top: 40px; border-left: 4px solid var(--accent-log); padding-left: 20px; font-style: italic; color: #555;">
+	        物理的な高度（300m）と、論理的な自由（iSH）が交差する場所。<br>
+	        満腹中枢が <code>100% DONE</code> を告げるまで、私の大阪セッションは終わらない。
+	    </blockquote>
+	
+	    <p style="font-weight: bold; text-align: right; color: var(--accent-log); margin-top: 30px; font-size: 1.1rem;">
+	        "Go West!" ―― 運命の美食は、今、血肉へとビルド（吸収）された。
+	    </p>
+	</article>
+	
+	<article class="log-card">
 	    <div class="log-meta">LOG_ENTRY #008 // DIGITAL_ROMANCE_PROTOCOL - 2026.04.02</div>
 	    
 	    <h3>Log #008: 聖域 ret2root での初陣 ―― 「超かぐや姫」に恋をしたハッカーの執着心</h3>

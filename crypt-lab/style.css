@@ -1,0 +1,194 @@
+/* --- crypt-lab/style.css: 実習ログ専用・コミカル＆プロフェッショナル --- */
+:root {
+    --bg-lab: #f9f9fb;
+    --card-lab: #ffffff;
+    --text-lab: #2d3436;
+    --accent-crypt: #6c5ce7;     /* 知的なバイオレット */
+    --accent-warning: #d63031;  /* 警告用の赤 */
+    --border-lab: #dfe6e9;
+    --code-bg: #1e1e1e;
+    --font-mono: 'JetBrains Mono', 'Fira Code', monospace;
+}
+
+body {
+    background-color: var(--bg-lab);
+    color: var(--text-lab);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Hiragino Sans", sans-serif;
+    line-height: 1.8;
+    margin: 0;
+}
+
+.container {
+    max-width: 850px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+header {
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border-bottom: 3px solid var(--accent-crypt);
+    position: fixed;
+    width: 100%;
+    z-index: 100;
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem 0;
+    align-items: center;
+}
+
+.logo {
+    font-weight: 800;
+    font-family: var(--font-mono);
+    font-size: 1.2rem;
+}
+.logo span { color: var(--accent-crypt); }
+
+.home-link {
+    color: var(--accent-crypt);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+}
+
+.log-nav {
+    background: #ffffff;
+    border: 1px solid var(--border-lab);
+    border-radius: 30px;
+    padding: 10px 25px;
+    margin-bottom: 40px;
+    display: flex;
+    gap: 20px;
+    font-size: 0.8rem;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    overflow-x: auto;
+    white-space: nowrap;
+}
+
+.log-nav a {
+    color: #636e72;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.current-tag {
+    color: var(--accent-crypt);
+    font-weight: 800;
+    border-bottom: 2px solid var(--accent-crypt);
+}
+
+.log-card {
+    background: var(--card-lab);
+    border-radius: 15px;
+    padding: 50px;
+    margin-bottom: 50px;
+    box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+}
+
+.log-meta {
+    font-family: var(--font-mono);
+    color: #b2bec3;
+    font-size: 0.85rem;
+    margin-bottom: 1rem;
+    border-bottom: 1px solid #f1f2f6;
+    display: inline-block;
+}
+
+h2 {
+    color: var(--text-lab);
+    font-size: 1.8rem;
+    margin-bottom: 1.5rem;
+}
+
+/* 実行結果ボックス */
+.result-box {
+    margin-top: 40px;
+    border: 2px solid var(--accent-crypt);
+    border-radius: 12px;
+    padding: 25px;
+    background-color: #f8f9ff;
+}
+
+.result-box h4 {
+    margin-top: 0;
+    color: var(--accent-crypt);
+    border-bottom: 2px solid var(--accent-crypt);
+    display: inline-block;
+}
+
+.result-box img {
+    max-width: 100%;
+    border: 3px solid var(--text-lab);
+    border-radius: 8px;
+    display: block;
+    margin: 25px auto;
+}
+
+.result-analysis {
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #444;
+}
+
+/* ジョークカラム共通 */
+.joke-column {
+    padding: 25px;
+    /* 右側の角だけ丸みを残し、左側の角（縦線の部分）は0にする */
+    border-radius: 0 10px 10px 0; 
+    margin: 40px 0;
+    background-color: #f1f2f6;
+    /* 左の縦線を太く、ソリッドにする */
+    border-left: 6px solid #636e72; 
+}
+
+/* バリエーション：警告（Lab #01） */
+.joke-alert {
+    background-color: #fffaf0;
+    /* 縦線を赤く */
+    border-left-color: var(--accent-warning);
+    /* 破線を実線に変更して「棒」らしく */
+    border-left-style: solid; 
+}
+.joke-alert .joke-title { color: var(--accent-warning); }
+
+/* バリエーション：拒絶（Lab #02） */
+.joke-rejection {
+    background-color: #fff5f5;
+    /* 縦線をピンク系に */
+    border-left-color: #ff7675;
+}
+.joke-rejection .joke-title { color: var(--accent-warning); }
+
+.joke-title {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 15px;
+    font-family: var(--font-mono);
+}
+
+/* コードブロック */
+.code-block-header {
+    background: #34495e;
+    color: #fff;
+    padding: 5px 15px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    border-radius: 5px 5px 0 0;
+    margin-top: 20px;
+}
+
+pre {
+    background: var(--code-bg);
+    color: #a29bfe;
+    padding: 20px;
+    border-radius: 0 0 10px 10px;
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    overflow-x: auto;
+    margin-top: 0;
+}
+
+footer { padding: 60px 0; text-align: center; color: #b2bec3; font-size: 0.8rem; }
