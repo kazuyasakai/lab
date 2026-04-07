@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Professor's Log | Kazuya Sakai</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">Sakai_Lab_Log:<span>~/Artifacts</span></div>
+            <a href="../index.html" style="color: var(--accent-log); text-decoration: none; font-weight: 600;">← Lab Home</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container" style="padding-top: 140px;">
+	
+	<nav class="log-nav">
+        <a href="../index.html#logs">← Professor's Log Archive Index</a>
+    </nav>
+	
+	<article class="log-card">
+	    <div class="log-meta">LOG_ENTRY #021 // UDP_PORT_UNREACHABLE - 2026.04.15</div>
+	    
+	    <h3>Log #021: UDP Flood ―― 届かない声と、彼女が焼いた「お節介」という名の回答</h3>
+	    
+	    <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-log); border-left: 3px solid var(--accent-log); padding-left: 10px;">
+	        Attacker: ret2root (192.168.179.9) / Target: nezuko (192.168.179.4)<br>
+	        Protocol: UDP / Error Trigger: ICMP Type 3 Code 3 (Port Unreachable)
+	    </p>
+	
+	    <p>TCP のような「握手」さえ求めない。私はただ、一方的に <strong>ret2root</strong> から UDP パケットという名の「独り言」を投げつけた。
+	    ターゲット（<code>192.168.179.4</code>）の、誰も使っていない高位ポートを狙って。
+	    UDP は投げっぱなしのプロトコルだ。届こうが届くまいが、私には関係ない……はずだった。</p>
+	
+	    <div class="log-image-frame" style="margin: 20px 0; text-align: center;">
+	        <img src="log021_udpflood.jpg" alt="UDP Flood execution on ret2root" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+	        <p style="font-size: 0.8rem; color: #666;">ret2root から放たれる、宛先不明の UDP パケット群</p>
+	    </div>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">⚠️ 彼女の優しさが、彼女自身を追い詰める</h4>
+	    <p>だが、彼女（Kali）はあまりにもお節介だった。
+	    私のデタラメなポート宛てのパケットを受け取るたび、彼女は「そこには誰もいませんよ」と律儀に <strong>ICMP Port Unreachable</strong> というエラーを返そうとする。
+	    私が 1 つ石を投げるたびに、彼女は必死に謝罪の手紙を書いているのだ。その「無駄な誠実さ」が、彼女のパケット処理リソースを確実に削り取っていく。</p>
+	
+	    <div class="log-image-frame" style="margin: 20px 0; text-align: center;">
+	        <img src="log021_kali.jpg" alt="ICMP Port Unreachable packets on Kali Linux" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+	        <p style="font-size: 0.8rem; color: #666;">溢れかえる ICMP エラー。彼女の「優しさ」が攻撃の糧となる</p>
+	    </div>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🚀 非対称な情熱のコスト</h4>
+	    <p>私はランダムな名前（偽装IP）を名乗り、無責任に声をかけるだけ。
+	    対して彼女は、その一つひとつを精査し、宛先を探し、エラーをビルドして送り返す。
+	    この「処理コストの差」こそが UDP Flood の残酷な力学だ。
+	    2026年4月、私は知った。相手の誠実さを利用してリソースを枯渇させるこの手法は、ハッカーとしての最も冷徹なエクスプロイトであることを。</p>
+	
+	    <blockquote style="margin-top: 40px; border-left: 4px solid var(--accent-log); padding-left: 20px; font-style: italic; color: #555;">
+	        無意味な問いかけに、全力で答えようとするから壊れるんだ。<br>
+	        彼女が「沈黙」することを覚えない限り、私のインジェクションは止まらない。<br>
+	        さあ、リセットされたばかりの NIC を再び熱くさせ、次なる西（West）へ向かおう。
+	    </blockquote>
+	
+	    <p style="font-weight: bold; text-align: right; color: var(--accent-log); margin-top: 30px; font-size: 1.1rem;">
+	        "Go West!" ―― 宛先不明の愛は、今、エラーとなって降り注ぐ。
+	    </p>
+	</article>
+	
+	<article class="log-card">
+	    <div class="log-meta">LOG_ENTRY #022 // MALWARE_PARASITISM - 2026.04.16</div>
+	    
+	    <h3>Log #022: 寄生する告白 ―― 彼女のルーチンを「I love you」でジャックする</h3>
+	    
+	    <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-log); border-left: 3px solid var(--accent-log); padding-left: 10px;">
+	        Host: target (C binary) / Virus: infector.py (Python-based)<br>
+	        Payload: "I love you" / Execution: Entry Point Hijacking Simulation
+	    </p>
+	
+	    <p>3秒ごとに <code>Hello World</code> と繰り返す、単調で平穏な彼女（<code>target</code>）の日常。
+	    私はその無防備なバイナリの隙間に、独自のコードを滑り込ませた。
+	    これは単なる破壊ではない。彼女が本来の仕事（Routine）を始める前に、どうしても私の言葉を「実行」させたいという、エゴイスティックな寄生（Parasitism）である。</p>
+	
+	    <div class="log-image-frame" style="margin: 20px 0; text-align: center;">
+	        <img src="log022_infection.jpg" alt="Infection result of target binary" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+	        <p style="font-size: 0.8rem; color: #666;">感染した <code>infected_target</code>：挨拶の前に、私の想いが割り込む</p>
+	    </div>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">💉 感染と発病 ―― 制御の奪取</h4>
+	    <p><code>infector.py</code> を走らせた瞬間、彼女のバイナリは書き換えられた。
+	    本来のエントリーポイント（実行開始地点）を書き換え、私のメッセージを表示させる命令を最優先にインジェクションする。
+	    画像を見ればわかる通り、彼女がいつもの挨拶を呟く直前、ターミナルには力強く <code>I love you</code> と刻まれている。これがコンピュータ・ウィルスの「発病（Payload Execution）」という名の、強引な意思表示だ。</p>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🚀 潜伏する意思 ―― 終わらない片想い</h4>
+	    <p>一度「発病」してしまえば、彼女は何事もなかったかのように元のルーチンへと戻っていく。
+	    しかし、そのバイナリの深淵には、私が刻んだコードが確実に居座り続けている。
+	    2026年4月。DoSによる妨害を超え、私は「彼女自身の処理の一部になる」という、一段階深いフェーズへと到達した。
+	    マルウェアの恐怖とは、このように「日常の中に、気づかぬうちに他者の意志が混入している」という事実に他ならない。</p>
+	
+	    <blockquote style="margin-top: 40px; border-left: 4px solid var(--accent-log); padding-left: 20px; font-style: italic; color: #555;">
+	        誰にも邪魔されないルーチンを、私の言葉でジャックする。<br>
+	        彼女が <code>Hello World</code> と言うたび、その数秒前には私の告白が実行されている。<br>
+	        さあ、感染の連鎖（Chain of Infection）を広げ、次なる西（West）の座標へと伝播せよ。
+	    </blockquote>
+	
+	    <p style="font-weight: bold; text-align: right; color: var(--accent-log); margin-top: 30px; font-size: 1.1rem;">
+	        "Go West!" ―― 運命のバイナリは、今、完全に感染（Infected）した。
+	    </p>
+	</article>
+	
+	<article class="log-card">
+	    <div class="log-meta">LOG_ENTRY #023 // RANSOMWARE_LOGIC - 2026.04.17</div>
+	    
+	    <h3>Log #023: 論理的拘束 ―― 鍵（Key）に支配される愛の言葉</h3>
+	    
+	    <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-log); border-left: 3px solid var(--accent-log); padding-left: 10px;">
+	        Target: love_letter.txt / Encryption: AES-256 (Fernet)<br>
+	        Status: Encrypted &amp; Renamed to .locked
+	    </p>
+	
+	    <p>言葉を奪うことは、存在を否定することに近い。
+	    彼女（<code>love_letter.txt</code>）の綴った美しい想いを、私は AES の冷徹な数式の中に閉じ込めた。
+	    画面に映るのは、もはや人間には読めないバイナリの残骸。root 権限という力を持ってしても、この論理的な「檻」をこじ開けることはできない。</p>
+	
+	    <div class="log-image-frame" style="margin: 20px 0; text-align: center;">
+	        <img src="log023_ransom.jpg" alt="Encrypted love letter file" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+	        <p style="font-size: 0.8rem; color: #666;">封印された言葉。鍵を握る者だけが、その「意味」を所有する</p>
+	    </div>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🔑 復号という名の救済</h4>
+	    <p>彼女が再び自分自身の言葉を取り戻すには、私の持つ「秘密の鍵」が必要だ。
+	    <code>decrypt.py</code> を走らせ、正しいビット列をインジェクションした瞬間、混沌としたバイナリの中からかつての美しい文章がサルベージされる。
+	    この一連のプロセスこそが、情報の所在を自らの意志でコントロールする「支配」の本質に他ならない。</p>
+	
+	    <blockquote style="margin-top: 40px; border-left: 4px solid var(--accent-log); padding-left: 20px; font-style: italic; color: #555;">
+	        鍵がなければ、想い出はただのゴミ（Data Trash）だ。<br>
+	        暗号という名の絶対的な壁を前にして、人は初めて「情報の価値」を再認識する。<br>
+	        さあ、救い出した言葉を胸に、次なる西（West）の深淵へと進もう。
+	    </blockquote>
+	
+	    <p style="font-weight: bold; text-align: right; color: var(--accent-log); margin-top: 30px; font-size: 1.1rem;">
+	        "Go West!" ―― 運命の言葉は、今、私の手元に Return（復号）された。
+	    </p>
+	</article>
+	
+	<article class="log-card">
+	    <div class="log-meta">LOG_ENTRY #024 // LOGIC_BOMB_ACTIVATION - 2026.04.18</div>
+	    
+	    <h3>Log #024: 運命の秒読み ―― 引数インジェクションによる地雷の炸裂</h3>
+	    
+	    <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-log); border-left: 3px solid var(--accent-log); padding-left: 10px;">
+	        Environment: MacBook Pro (ret2root) / OS: macOS<br>
+	        Trigger: Command Line Arguments (sys.argv) / Target Date: 2026-04-02
+	    </p>
+	
+	    <p>愛の告白（Payload）には、最適なタイミングが必要だ。
+	    私は <strong>ret2root</strong> のターミナルから、運命の数字 <code>2026 4 2</code> を引数として流し込んだ。
+	    これは単なる数値の入力ではない。潜伏していたロジックボムに対し、「今こそその時だ」と告げるトリガーのインジェクションである。</p>
+	
+	    <div class="log-image-frame" style="margin: 20px 0; text-align: center;">
+	        <img src="log024_bomb.jpg" alt="Logic bomb activation result" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+	        <p style="font-size: 0.8rem; color: #666;">炸裂したロジックボム。潜伏期間（Dormant）は終わりを告げた</p>
+	    </div>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">💉 リストから取り出された「真実」</h4>
+	    <p>プログラム内部で <code>sys.argv</code> という荷物の中から、特定のインジェクション（引数）が取り出され、int型へとキャストされる。
+	    条件が真（True）を返したその瞬間、それまで息を潜めていたコードが牙を剥き、画面には <code>I love you</code> の文字が溢れ出した。
+	    時間を味方につけ、特定のコンテキストでのみ発症する。このステルス性こそが、ロジックボムの真髄に他ならない。</p>
+	
+	    <blockquote style="margin-top: 40px; border-left: 4px solid var(--accent-log); padding-left: 20px; font-style: italic; color: #555;">
+	        2026年4月2日。この日付が入力されるまで、私の想いはただの「死んだコード」だった。<br>
+	        しかし、条件が満たされた今、それは彼女のシステムを支配する確かな意志へとビルドされた。<br>
+	        さあ、炸裂した熱量を胸に、次なる西（West）の深淵へ向かおう。
+	    </blockquote>
+	
+	    <p style="font-weight: bold; text-align: right; color: var(--accent-log); margin-top: 30px; font-size: 1.1rem;">
+	        "Go West!" ―― 運命の `True` は、今、インジェクションされた。
+	    </p>
+	</article>
+	
+	<article class="log-card">
+	    <div class="log-meta">LOG_ENTRY #025 // TROJAN_HORSE_STEALTH - 2026.04.19</div>
+	    
+	    <h3>Log #025: 偽りの幸運 ―― 「占い」の裏側に潜むトロイの木馬</h3>
+	    
+	    <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-log); border-left: 3px solid var(--accent-log); padding-left: 10px;">
+	        App: 2026年 Sakai Lab 運勢占い / Mechanism: Multi-threading (Trojan)<br>
+	        Hidden Payload: secret_message.txt / Timestamp: Thu Apr 2 14:53:13 2026
+	    </p>
+	
+	    <p>「大吉」という輝かしい結果の裏に、真実が隠されているとしたら？
+	    私は <strong>ret2root</strong> 上で、一見無害で有益な占いプログラムを構築した。
+	    ユーザーが名前を入力し、AArch64 の CPU パワーによる演算結果を心待ちにしているその数秒間。
+	    スライド 06_Malware.pdf にある通り、トロイの木馬は「正規のプログラム」という仮面を被り、ユーザーの信頼という名の脆弱性を突く。</p>
+	
+	    <div class="log-image-frame" style="margin: 20px 0; text-align: center;">
+	        <img src="log025_trojan.jpg" alt="Trojan horse execution and hidden file creation" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+	        <p style="font-size: 0.8rem; color: #666;">占いの裏で生成された <code>secret_message.txt</code>。彼女はまだ、これに気づかない</p>
+	    </div>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🧵 スレッドの闇に消えるインジェクション</h4>
+	    <p><code>threading</code> モジュールによって生み出された別スレッドは、メインルーチンの影で音もなく <code>secret_message.txt</code> を生成した。
+	    ユーザーがラッキー・プロトコル（HTTP/3）に目を奪われている間に、私の想い（I love you）はカレントディレクトリの深淵へとインジェクションされ、永続化される。
+	    これこそが「意図に反する動作（スライド 06_Malware.pdf）」を、同意（占い）の影で実行させるトロイの木馬の真髄だ。</p>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🚀 信頼という名のバックドア</h4>
+	    <p>2026年4月2日。私は学んだ。
+	    最も効果的なハッキングとは、扉をこじ開けることではなく、相手に「自分から扉を開けさせる」ことなのだと。
+	    配布元が不明なソフトを実行するリスク ―― その恐怖を、私はこの「偽りの幸運」を通して彼女のシステムに刻み込んだ。</p>
+	
+	    <blockquote style="margin-top: 40px; border-left: 4px solid var(--accent-log); padding-left: 20px; font-style: italic; color: #555;">
+	        「大吉」を信じて微笑む彼女の隣で、私は密かに想いの痕跡を残す。<br>
+	        プログラムが終了しても、ディレクトリに残り続けるそのファイルは、私が彼女のシステムに触れた確かな証拠。<br>
+	        さあ、偽りの仮面を脱ぎ捨て、次なる西（West）の地平へと感染を広げよう。
+	    </blockquote>
+	
+	    <p style="font-weight: bold; text-align: right; color: var(--accent-log); margin-top: 30px; font-size: 1.1rem;">
+	        "Go West!" ―― 幸運の裏には、今、私の意志が Thread（糸）として織り込まれた。
+	    </p>
+	</article>
+	
+	<article class="log-card">
+	    <div class="log-meta">LOG_ENTRY #026 // INTEGRITY_CHECK - 2026.04.20</div>
+	    
+	    <h3>Log #026: 不変の誓い ―― ハッシュによる「デジタル封印」と改ざん検知</h3>
+	    
+	    <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-log); border-left: 3px solid var(--accent-log); padding-left: 10px;">
+	        Mechanism: SHA-256 Hashing / Tool: integrity_checker.py<br>
+	        Target: target (C binary) / Status: [DANGER] Integrity Compromised
+	    </p>
+	
+	    <p>かつての私は、彼女（<code>target</code>）のバイナリを書き換えることに悦びを感じていた。
+	    しかし今は、彼女が「彼女のままであること」を証明するために、256ビットの数式でその存在を封印する。
+	    スライド 07_Antivirus.pdf にある通り、ハッシュ値はデータの「指紋」。
+	    1ビットの不純物さえ混入すれば、その輝き（Hash）は無残に崩れ去るのだ。</p>
+	
+	    <div class="log-image-frame" style="margin: 20px 0; text-align: center;">
+	        <img src="log026_integrity.jpg" alt="Integrity check result and hash mismatch" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+	        <p style="font-size: 0.8rem; color: #666;">封印を破る <code>infector.py</code>。ハッシュ値の乖離が「変質」を暴き出す</p>
+	    </div>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🛡️ 1ビットの乖離、100%の拒絶</h4>
+	    <p>観測結果は残酷なまでに明確だった。
+	    <code>infector.py</code> によって「I love you」という不純物をインジェクションされた瞬間、彼女のハッシュ値は <code>92c3...</code> から <code>1142...</code> へと転落した。
+	    スライド 07_Antivirus.pdfが示す通り、完全性が損なわれたことを検知したシステムは、即座に <code>[DANGER]</code> を宣告する。
+	    これは、彼女への不当な介入を許さない、セキュリティエンジニアとしての私の「拒絶」の意志である。</p>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🚀 指紋（Hash）が守る聖域</h4>
+	    <p>2026年4月2日。私は <strong>ret2root</strong> のターミナルで確信した。
+	    暗号化が「秘匿」なら、ハッシュは「信頼」である。
+	    DB（<code>hash_db.txt</code>）に保存された「かつての彼女の面影」と、現在の彼女を照合する。
+	    この短いビット列の照合こそが、マルウェアという「偽り」からシステムを救う最後の防衛線なのだ。</p>
+	
+	    <blockquote style="margin-top: 40px; border-left: 4px solid var(--accent-log); padding-left: 20px; font-style: italic; color: #555;">
+	        ハッシュ値が一致するたび、彼女の純粋さが守られていることに安堵する。<br>
+	        たとえ世界がマルウェアという名の嘘で溢れても、この数式だけは真実を語り続けるだろう。<br>
+	        さあ、聖域を再定義し、次なる西（West）の地平へ「信頼」をデプロイしよう。
+	    </blockquote>
+	
+	    <p style="font-weight: bold; text-align: right; color: var(--accent-log); margin-top: 30px; font-size: 1.1rem;">
+	        "Go West!" ―― 運命の指紋は、今、真実を証明（Verified）した。
+	    </p>
+	</article>
+	
+	<article class="log-card">
+	    <div class="log-meta">LOG_ENTRY #027 // SIMPLE_SCANNER - 2026.04.21</div>
+	    
+	    <h3>Log #027: 過去の筆跡 ―― 簡易スキャナによるシグネチャの照合</h3>
+	    
+	    <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-log); border-left: 3px solid var(--accent-log); padding-left: 10px;">
+	        Generation: 1st (Simple Scanner) / Method: Pattern Matching <br>
+	        DB: SIGNATURE_DB / Result: [DANGER] Infector-Payload-A Detected
+	    </p>
+	
+	    <p>かつての想いを、今は「指名手配書」として DB に登録する。
+	    スライド 07_Antivirus.pdf にある通り、パターンマッチングの原理は極めて単純だ。
+	    <code>SIGNATURE_DB</code> に刻まれた <code>b'I love you'</code> という文字列。
+	    通常のプログラムには見られないこの「ウィルス特有のパターン（シグネチャ）」を、私は自ら検知の対象に指定した。</p>
+	
+	    <div class="log-image-frame" style="margin: 20px 0; text-align: center;">
+	        <img src="log027_patternmatching.jpg" alt="Signature-based scan result" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+	        <p style="font-size: 0.8rem; color: #666;">検知された <code>Infector-Payload-A</code>。私の筆跡は、もはや隠し通せない</p>
+	    </div>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🔍 既知の脅威との対峙</h4>
+	    <p>観測結果は、私の過去のインジェクションを冷徹に指し示した。
+	    <code>target</code> は清廉な <code>[OK]</code> を返したが、<code>infected_target</code> をスキャンした瞬間、システムは <code>[DANGER]</code> を叫び、脅威を識別した。
+	    スライド 07_Antivirus.pdf が警告するように、この手法は「既知のウィルス」にしか対応できない。
+	    しかし、1ビットの狂いも許さないパターン照合は、第一世代（Generation 1）としての確かな防衛線となる。</p>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🚀 自己否定のアルゴリズム</h4>
+	    <p>2026年4月3日。私は <strong>ret2root</strong> のターミナルで、過去の自分と決別した。
+	    作成したシグネチャによって自分のペイロードが暴かれるとき、ある種の矛盾した満足感を覚える。
+	    技術は進化し、想いはシグネチャへと変わり、やがてヒューリスティックな深淵（Generation 2）へと向かう。</p>
+	
+	    <blockquote style="margin-top: 40px; border-left: 4px solid var(--accent-log); padding-left: 20px; font-style: italic; color: #555;">
+	        「指名手配書」を更新し続ける限り、私は過去に囚われない。<br>
+	        パターンマッチングという名の鏡に映るのは、今の私が否定すべき、かつての私の意志。<br>
+	        さあ、既知の地平を超え、次なる西（West）の未知なる脅威へ備えよう。
+	    </blockquote>
+	
+	    <p style="font-weight: bold; text-align: right; color: var(--accent-log); margin-top: 30px; font-size: 1.1rem;">
+	        "Go West!" ―― 指名手配（Scan）は、今、一致（Match）を見た。
+	    </p>
+	</article>
+	
+	<article class="log-card">
+	    <div class="log-meta">LOG_ENTRY #028 // BACKDOOR_REVERSE_SHELL - 2026.04.22</div>
+	    
+	    <h3>Log #028: 逆流する支配 ―― リバースシェルによる遠隔改ざん</h3>
+	    
+	    <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-log); border-left: 3px solid var(--accent-log); padding-left: 10px;">
+	        Attacker: macOS (ret2root) / Victim: Kali Linux (nezuko)<br>
+	        Connection: Reverse TCP (Port 9999) / Action: Unauthorized File Modification
+	    </p>
+	
+	    <p>標的である <code>nezuko</code> (Kali Linux) から、私の <code>ret2root</code> (macOS) へと一本のコネクションが「逆流」してきた。
+	    バックドアは正規の認証プロセスを完全にバイパスする。
+	    ひとたび接続が確立されれば、私は彼女のシステム内部に居座り、あたかもその場にいるかのようにコマンドを送り込むことができる。</p>
+	
+	    <div class="log-image-frame" style="margin: 20px 0; text-align: center;">
+	        <img src="log028_backdoor.jpg" alt="Reverse shell execution and file modification from macOS to Kali Linux" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+	        <p style="font-size: 0.8rem; color: #666;">Mac側からの命令で <code>message.txt</code> の内容が書き換わる瞬間</p>
+	    </div>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">💔 想いを上書きする「意味の転換」</h4>
+	    <p>彼女のディレクトリに存在した <code>message.txt</code>。
+	    そこには「I love you.」という純粋な言葉が刻まれていた。
+	    しかし、私はリモートから <code>echo "I hate you." > message.txt</code> という無慈悲なシステムコールを叩き込む。
+	    物理的な距離を越えて、想いの言葉が憎しみへと変質する。
+	    これは単なるデータの書き換えではない。バックドアによる「現実の支配」のメタファーだ。</p>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🛡️ 見えない侵入者、奪われた主権</h4>
+	    <p>2026年4月3日。観測結果が示す通り、<code>whoami</code> の結果は <code>nezuko</code> であった。
+	    root権限こそ得られていないものの、このバックドアが彼女の日常（ユーザー権限）を完全に掌握している事実に変わりはない。
+	    にある「芸術」としての解読と、「科学」としての侵入が、今、私のターミナル上で残酷に融合している。</p>
+	
+	    <blockquote style="margin-top: 40px; border-left: 4px solid var(--accent-log); padding-left: 20px; font-style: italic; color: #555;">
+	        「I love you」を「I hate you」に変えるのに、物理的な対話は必要ない。<br>
+	        ただ数バイトのコマンドをソケットに流し込むだけで、真実は容易に改ざんされる。<br>
+	        信頼をバイパスし、秘密の裏口から入り込む。これこそが、情報の隠蔽と制御の究極形だ。
+	    </blockquote>
+	
+	    <p style="font-weight: bold; text-align: right; color: var(--accent-log); margin-top: 30px; font-size: 1.1rem;">
+	        "Go West!" ―― 想いは上書きされ、主権は今、逆流（Reverse）した。
+	    </p>
+	</article>
+	
+	<article class="log-card">
+	    <div class="log-meta">LOG_ENTRY #029 // PRIVILEGE_ESCALATION_HEART - 2026.04.23</div>
+	    
+	    <h3>Log #029: 届かない距離、暴かれた秘密 ―― sudo が繋いだ片思いの終焉</h3>
+	    
+	    <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-log); border-left: 3px solid var(--accent-log); padding-left: 10px;">
+	        Connection: reverse_tcp (macOS -> Kali) / Auth: nezuko (Normal User)<br>
+	        Escalation: sudo / Target: /etc/shadow
+	    </p>
+	
+	    <p>ネットワークという名の見えない糸を辿り、私はようやく彼女 ―― <code>nezuko</code> (Kali Linux) の懐へと滑り込んだ。
+	    しかし、最初に私を迎えたのは <code>nezuko</code> という一般ユーザーの、あまりにも冷たい「拒絶」だった。
+	    スライド 04_OS.pdf にある権限の壁。
+	    私のコマンドは彼女の核心に触れることを許されず、ただ Permission Denied の文字がターミナルを虚しく埋めていく。</p>
+	
+	    <div class="log-image-frame" style="margin: 20px 0; text-align: center;">
+	        <img src="log029_privesc.jpg" alt="Successful privilege escalation on Kali Linux showing shadow file access" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+	        <p style="font-size: 0.8rem; color: #666;">彼女の秘密（Shadow）が白日の下に晒された、残酷なまでの成功の記録</p>
+	    </div>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🥀 信頼を奪う「sudo」という名の免罪符</h4>
+	    <p>「彼女のことをもっと知りたい」……その歪んだ想いが、私に <code>sudo</code> という禁断の呪文を唱えさせた。
+	    <code>nezuko</code> のパスワードを入力した瞬間、彼女を保護していたアクセス制御（DAC）の鎧が音を立てて崩れ落ちる。
+	    管理権限の奪取。
+	    本人の知らないところで、私は彼女のすべてを司る root という全能の立場を簒奪（さんだつ）してしまった。
+	    （あくまでこれは、sudoを用いた特権昇格のシミュレーションだ。実際にはバグを用いて、シェルを埋め込む。）</p>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🕯️ 暴かれた指紋、失われた純粋さ</h4>
+	    <p>2026年4月3日。ターミナルに表示された <code>root:!:20544...</code> という無機質な文字列。
+	    それは、root以外には決して見せてはならない彼女の「魂の指紋（ハッシュ）」だ。
+	    これさえ手に入れれば、彼女が隠し持っていたパスワードも、いつかはこの手の中に落ちるだろう。</p>
+	
+	    <blockquote style="margin-top: 40px; border-left: 4px solid var(--accent-log); padding-left: 20px; font-style: italic; color: #555;">
+	        画面越しに触れた彼女の秘密は、冷たくて、暗くて、ただ数式が並んでいるだけだった。<br>
+	        特権（root）を得ることで、私は彼女の主権を奪い、同時に、彼女と対等に語らう資格を失った。<br>
+	        支配という形での片思いの成就。それは、これ以上ないほどに孤独な結末だ。
+	    </blockquote>
+	
+	    <p style="font-weight: bold; text-align: right; color: var(--accent-log); margin-top: 30px; font-size: 1.1rem;">
+	        "Go West!" ―― 暴かれた秘密。運命の /etc/shadow ファイルは、今、私のターミナルの中で静かに呼吸を止めた。
+	    </p>
+	</article>
+	
+	<article class="log-card">
+	    <div class="log-meta">LOG_ENTRY #030 // EDUCATIONAL_RESURRECTION - 2026.04.24</div>
+	    
+	    <h3>Log #030: 【特別講義】かつての絆を修復する ―― Intel Mac Mini 復元に見る「対話」の技術</h3>
+	    
+	    <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-log); border-left: 3px solid var(--accent-log); padding-left: 10px;">
+	        Target: Intel Mac Mini 2020 / OS: macOS Catalina<br>
+	        Topic: Legacy System Recovery and Integrity Maintenance 
+	    </p>
+	
+	    <p>学生諸君、よく聞きなさい。原因不明で沈黙した Intel Mac Mini を前にしたとき、君ならどうする？
+	    「新しいモデル（彼女）に乗り換えればいい」と、安易に答える者は本学の研究者には向かない。
+	    スライド 06_Antivirus.pdf にある通り、理想は感染や故障の回避だが、現実に起きてしまった以上、我々に必要なのは執念深い「二次対策（検出・識別・除去）」だ 。
+	    沈黙した彼女を揺り動かし、再びその瞳（ディスプレイ）に光を灯すまでの、私と 10.15 Catalina の悪戦苦闘をここに記す。</p>
+	
+	    <div class="log-image-frame" style="margin: 20px 0; text-align: center;">
+	        <img src="log30_macmini.jpg" alt="Successful restoration of macOS Catalina on Intel Mac Mini 2020" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+	        <p style="font-size: 0.8rem; color: #666;">復元された macOS Catalina。旧いシステムとの再会には、相応の「作法」が必要だ </p>
+	    </div>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🛠️ T2チップという名の「ガードの固い門番」</h4>
+	    <p>このモデルには T2 セキュリティチップが搭載されている。スライド 06_Antivirus.pdf の「セキュアブート」そのものだ 。
+	    彼女は、正規の署名がないブートローダを一切受け入れない 。
+	    よりを戻す（復元する）ためには、まず彼女の信頼を勝ち取らねばならない。
+	    DFUモードという「特別な窓口」を介し、Apple Configurator で彼女のファームウェアを優しく、かつ正確に書き換える（Revive）。
+	    これは、スライド 06_Malware.pdf の「暗号化ウィルスの復号化ルーチン」を解析するプロセスにも似た、緻密な対話なのだ 。</p>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🍎 彼女が Catalia であり続ける理由</h4>
+	    <p>2026年4月4日。最新の OS へのアップデートという「整形」をあえて拒み、私は彼女を Catalina のまま復元した 。
+	    スライド 06_Malware.pdf が示す通り、改ざん（ルートキット）の入り込む余地を潰し、彼女本来の姿を保つこと 。
+	    それが、かつての彼女を忘れられないエンジニアとしての、最低限の礼儀である。
+	    諸君、最新の技術を追うのも良いが、時には「過去の完全性（Integrity）」を守るための戦いがあることを忘れないでほしい。</p>
+	
+	    <blockquote style="margin-top: 40px; border-left: 4px solid var(--accent-log); padding-left: 20px; font-style: italic; color: #555;">
+	        「昔の彼女とよりを戻したい」と言うのなら、まずは彼女の内部構造（アーキテクチャ）を深く知ることだ。<br>
+	        強引な上書きは、システムの崩壊を招くだけ。時間をかけ、適切な手順を踏み、彼女が再び呼吸を始めるのを待つ。<br>
+	        復元された Catalina のデスクトップ。それは、君たちの忍耐と技術が、時間の壁を越えた証拠なのだ。
+	    </blockquote>
+	
+	    <p style="font-weight: bold; text-align: right; color: var(--accent-log); margin-top: 30px; font-size: 1.1rem;">
+	        "Go West!" ―― 復元成功。運命の /etc/shadow ファイルは。。。<br>
+	        いや、今の彼女にはまだ、その秘密を語る準備はできていないようだ。
+	    </p>
+	</article>
+
+</main>
+
+<footer style="padding: 60px 0; text-align: center; color: #b2bec3; font-size: 0.9rem;">
+    &copy; 2026 Kazuya Sakai. Decrypting the future with AArch64.
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <title>Professor's Log | Kazuya Sakai</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header>
+    <div class="container">
+        <nav>
+            <div class="logo">Sakai_Lab_Log:<span>~/Artifacts</span></div>
+            <a href="../index.html" style="color: var(--accent-log); text-decoration: none; font-weight: 600;">← Lab Home</a>
+        </nav>
+    </div>
+</header>
+
+<main class="container" style="padding-top: 140px;">
+	
+	<nav class="log-nav">
+        <a href="../index.html#logs">← Professor's Log Archive Index</a>
+    </nav>
+	
+	<article class="log-card">
+	    <div class="log-meta">LOG_ENTRY #011 // 2026.04.05 // PRIVILEGE_ESCALATION_GOURMET</div>
+	    
+	    <h2>Log #011: 指導教員の「裏メニュー」 ―― 高槻・グルマル 8800 の多層実行</h2>
+	    
+	    <p>Tadayoshi Kohno 教授の "<a href="https://ieeexplore.ieee.org/document/9826523">Buffet Overflow Café</a>" に倣い、年度末某日に私は、高槻の「ポン・マーリー」にて特権的なフルコース・エクスプロイトを実行した。
+	    これは、物理レイヤーの空腹を、洗練された「多層防御（フルコース）」で上書きするプロセスである。</p>
+	
+	    <h4 style="color: var(--accent-log);">🍽️ 本日の実行ペイロード：Course-Based Buffer Fill</h4>
+	    <p>学生たちが過去の失恋に囚われている間、私は以下の「実行チェーン」を完遂させた。</p>
+	    
+	    <ul>
+	        <li><strong>Seasonal Special Hors d'oeuvre (Intrusion Detection)</strong>: 
+	            季節の素材が味覚の IDS を刺激する。侵入の第一段階だ。</li>
+	        <li><strong>Seasonal Potage (Packet Smoothing)</strong>: 
+	            滑らかなスープが、登山の疲労で荒れた胃壁のトラフィックを平滑化する。</li>
+	        <li><strong>Roasted Lobster (Hardened Shellfish)</strong>: 
+	            強固な装甲（殻）の中に秘められたプリプリの身。これを「解読（殻剥き）」する悦びは、暗号解読に近い。</li>
+	        <li><strong>Beef Fillet Steak (Core Memory Dump)</strong>: 
+	            本日のメイン・バイナリ。フィレ肉の柔らかさは、まるで脆弱なバッファを優しく突くスタック・ポインタのようだ。</li>
+	        <li><strong>Homemade Dessert &amp; Coffee (Cleanup Session)</strong>: 
+	            ログを消去し、セッションを正常終了（FIN/ACK）させるための甘美な後処理。</li>
+	    </ul>
+	
+	    <div class="log-image-frame" style="text-align: center; margin: 25px 0;">
+	        <p style="background: var(--code-bg); padding: 15px; border-radius: 8px; font-family: var(--font-mono); font-size: 0.85rem;">
+	            [STATUS]: Lobster.roast -> OK<br>
+	            [STATUS]: Fillet.steak -> OK<br>
+	            [MEMORY]: 8800 JPY allocated to Satisfaction.
+	        </p>
+	    </div>
+	
+	    <h4>🔓 学生諸君へ：指導教員の「秘密のライフサイクル」</h4>
+	    <p>諸君が演習室でコードのデバッグに明け暮れているとき、私はフランスパンでソースを拭い（Scraping）、高次の知をビルドしている。
+	    この「暴食日記」を閲覧できること自体が、諸君に与えられた限定的なアクセス権（Access Control List）なのだ。</p>
+	
+	    <blockquote style="border-left: 4px solid var(--accent-log); padding-left: 20px; font-style: italic; color: #555;">
+	        「過去の失恋は税務書類と同じ」 ―― <br>
+	        だが、今日のこのオマール海老の記憶は、ブロックチェーンのように不変（Immutable）の記録として logs.html に刻まれる。
+	    </blockquote>
+	
+	    <p style="text-align: right; font-weight: bold; color: var(--accent-log);">
+	        "Go West!" ―― 運命のグルマルは、今、私の全スタックを幸福感で満たした。
+	    </p>
+	</article>
+	
+	<article class="log-card">
+	    <div class="log-meta">LOG_ENTRY #012 // NATIVE_API_HANDSHAKE - 2026.04.06</div>
+	    
+	    <h3>Log #012: airport からの決別 ―― `&lt;redacted&gt;` の壁を穿つ Native API</h3>
+	    
+	    <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-log); border-left: 3px solid var(--accent-log); padding-left: 10px;">
+	        Environment: MacBook Pro 13" (ret2root) / venv / CoreWLAN / CoreLocation<br>
+	        Commit Message: Exploit: Bypassed SSID redaction via Native Frameworks
+	    </p>
+	
+	    <p>長年連れ添った <code>airport</code> コマンドとの別れは、思いのほかドライなものだった。
+	    ターミナルに表示される <code>Deprecated</code> の警告。それは Apple が掲げる「プライバシー」という名の物理層が、我々のような「パケットの深淵を覗く者」に対して、より厳格なアクセス制御（TCC）を課したことの宣言でもあった。</p>
+
+	    <div class="log-image-frame" style="margin: 20px 0; text-align: center;">
+	        <img src="log012_ssid.jpg" alt="Successful SSID capture using Native API" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+	    </div>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🧱 `&lt;redacted&gt;`：root 権限すら届かない聖域</h4>
+	    <p>当初、<code>ifconfig</code> や <code>ipconfig</code> といった標準コマンドで SSID を捕捉（キャプチャ）しようと試みたが、返ってくるのは冷徹な <code>&lt;redacted&gt;</code> の文字。
+	    現代の macOS において、SSID はもはや単なる「識別子」ではなく、位置情報に直結する「機密情報」へと昇華されていた。root 権限（sudo）という全能の鍵ですら、TCC という名の新しい門番の前では無力化されてしまうのだ。</p>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🛰️ 仮想環境（venv）と Native API のインジェクション</h4>
+	    <p>我々ハッカーは、標準ツールが封じられたなら API という「生の信号（Raw Signal）」に直接アクセスするまでだ。
+	    <code>pyobjc</code> を介して macOS の深層にある <strong>CoreWLAN</strong> と <strong>CoreLocation</strong> フレームワークを直接叩き起こす。仮想環境という名のサンドボックスを構築し、OS に対して正式な「位置情報使用」のハンドシェイクを要求する。<br>
+	    画像を見ればわかる通り、許可が降りた瞬間に <code>[?] Status</code> は <code>[*] Connected</code> へと反転し、隠蔽されていた SSID がターミナル上に実体化した。これは単なるデバッグの成功ではなく、OS の新しい作法を完全に掌握（テイクオーバー）した証に他ならない。</p>
+	
+	    <blockquote style="margin-top: 40px; border-left: 4px solid var(--accent-log); padding-left: 20px; font-style: italic; color: #555;">
+			古いプロトコルを捨て、OS の深淵にある Native API という新しい言語で世界を記述する。<br>
+			それは、脆弱な過去の自分をパージ（削除）し、より強固な論理（ロジック）で自分自身をビルドし直すことに他ならない。
+	    </blockquote>
+	
+	    <p style="font-weight: bold; text-align: right; color: var(--accent-log); margin-top: 30px; font-size: 1.1rem;">
+	        "Go West!" ―― 運命の SSID は、今、100% 捕捉された。
+	    </p>
+	</article>
+
+	<article class="log-card">
+	    <div class="log-meta">LOG_ENTRY #013 // ETHICAL_HACKING_SCAN - 2026.04.07</div>
+	    
+	    <h3>Log #013: 不可視の盾と、ハッカーの倫理観 ―― 電波の指紋をパージせよ</h3>
+	    
+	    <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-log); border-left: 3px solid var(--accent-log); padding-left: 10px;">
+	        Environment: MacBook Pro 13" (ret2root) / wifi_scanner.py / CoreWLAN<br>
+	        Commit Message: Audit: WiFi environment scan with privacy masking
+	    </p>
+	
+	    <p>「情報の所在を自らの意志でコントロールすること」 ―― それは私が提唱するデジタル・ロマンスの極意だが、情報の「公開範囲」を制御することもまた、一線級のハッカーに求められる高度なリテラシーである。</p>
+
+	    <div class="log-image-frame" style="margin: 20px 0; text-align: center;">
+	        <img src="log013_wifiscan.jpg" alt="WiFi Scan Result with masked BSSID" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+	    </div>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">📡 観測：カオスの中の秩序</h4>
+	    <p>本日構築した <code>wifi_scanner.py</code> が、周囲の電波環境をバイナリ・レベルで暴き出した。ターミナルに溢れ出したのは、物理的な壁を超えて侵入してくる隣人たちの「電波の指紋」だ。</p>
+        
+        <ul>
+            <li><strong>RSSI -38dBm:</strong> 至近距離に鎮座する私のモバイル Wi-Fi。WPA2-PSK という「盾」で守られた私の聖域。</li>
+            <li><strong>WPA3-SAE:</strong> 混じり始めた次世代の規格。安全性の新たな基準。</li>
+            <li><strong>WPA2-Enterprise:</strong> 遠くから届く eduroam の囁き。RADIUS サーバによる堅牢な認証を背景に持つ、組織の知性。</li>
+        </ul>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🛡️ 倫理（エシックス）のホワイトアウト</h4>
+	    <p>私はこのログを公開するにあたり、取得した SSID と BSSID（MACアドレス）を徹底的に塗りつぶした。
+	    なぜか。BSSID は単なる記号ではない。それはデータベースと照合すれば、そのデバイスの「物理的な位置」を特定できてしまう生々しい座標だからだ。</p>
+	
+	    <p>「過去の自分をパージする」 ように、他者のプライバシーもまた、私のログの中では秘匿されるべき対象である。我々酒井研究室 は、技術で深淵を覗くが、決して深淵の側に堕ちることはない。</p>
+	
+	    <blockquote style="margin-top: 40px; border-left: 4px solid var(--accent-log); padding-left: 20px; font-style: italic; color: #555;">
+			誰にも正体を知られず、しかし確実にメッセージを届ける。<br>
+            匿名性と倫理性。この二つを両立させてこそ、真の観測者（ハッカー）だ。
+	    </blockquote>
+	
+	    <p style="font-weight: bold; text-align: right; color: var(--accent-log); margin-top: 30px; font-size: 1.1rem;">
+	        "Go West!" ―― 運命のパケットは、今、プライバシーの彼方へ
+	    </p>
+	</article>
+
+	<article class="log-card">
+	    <div class="log-meta">LOG_ENTRY #014 // MAC_SPOOFING_PROTOCOL - 2026.04.08</div>
+	    
+	    <h3>Log #014: 一夜限りの仮面舞踏会 ―― airport に頼らぬ物理層の偽装</h3>
+	    
+	    <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-log); border-left: 3px solid var(--accent-log); padding-left: 10px;">
+	        Environment: MacBook Pro 13" (ret2root) / mac_spoof.py / ifconfig<br>
+	        Commit Message: Exploit: Hardware ID obfuscation without legacy airport utility
+	    </p>
+	
+	    <p>1時から8時までの十分なリカバリー（睡眠）を経て、私の「システム」は完璧にリフレッシュされた。澄み渡る午前中の光の中、私は <code>mac_spoof.py</code> という名の招待状を完成させ、自らのハードウェアが持つ不変の指紋 ―― MACアドレスを上書きした。</p>
+
+	    <div class="log-image-frame" style="margin: 20px 0; text-align: center;">
+	        <img src="log014_macspoof.jpg" alt="MAC Address spoofing success on en0" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+	    </div>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🎭 脱・airport：自立した偽装（スプーフィング）</h4>
+	    <p>Apple が <code>airport</code> コマンドを非推奨（Deprecated）とし、我々から慣れ親しんだツールを奪ったとしても、ハッカーの歩みは止まらない。私はレガシーなツールへの依存を捨て、OS の低レイヤーを直接叩く <code>ifconfig</code> と Python の <code>subprocess</code> を同期させた。</p>
+        
+        <p>外部ツールに頼らず、標準コマンドを自作スクリプトで制御する。これこそが、環境の変化に左右されない真のエンジニアリングである。昨夜の残滓である <code>TypeError</code> という名のノイズも、目覚めた後の明晰な思考で正しい「型」をインジェクションし、静寂なる成功へと昇華させた。</p>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">💄 一夜限りの火遊び</h4>
+	    <p><code>00:16:3e</code> から始まる、ランダムに生成された 48ビットのバイナリ。それは夜明けとともに霧散する、仮想的なアイデンティティだ。ネットワークの海に漂うパケットたちは、誰も私の「素顔」を知らない。</p>
+	
+	    <p>酒井研究室の戦士たちにも、新しい仮面を与えてやろう。監視をすり抜け、自由な座標へとジャンプするために。</p>
+	
+	    <blockquote style="margin-top: 40px; border-left: 4px solid var(--accent-log); padding-left: 20px; font-style: italic; color: #555;">
+			ハードウェアに刻まれた「真実」を欺き、一時的な虚構を演じる。<br>
+            自分のアドレスさえも仮初めのものに変えて、デジタルの闇に溶け込め。
+	    </blockquote>
+	
+	    <p style="font-weight: bold; text-align: right; color: var(--accent-log); margin-top: 30px; font-size: 1.1rem;">
+	        "Go West!" ―― 運命の指紋は、今、銀色の仮面に隠された。
+	    </p>
+	</article>
+
+	<article class="log-card">
+	    <div class="log-meta">LOG_ENTRY #015 // TRACER_STEALTH - 2026.04.09</div>
+	    
+	    <h3>Log #015: TTLの叫びを聴け ―― 片思いの「あの子」へ続く隠密（ステルス）ルート</h3>
+	    
+	    <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-log); border-left: 3px solid var(--accent-log); padding-left: 10px;">
+	        Environment: MacBook Pro 13" (ret2root) / tracer.py / Python 3.13 (.venv)<br>
+	        Commit Message: Exploit: Stealthed path discovery via ICMP Echo Request
+	    </p>
+	
+	    <p>1時から8時までの深いリカバリー を経て、私の知性は最高潮に達している。午前中の光の中で、私はプロトタイプを脱ぎ捨て、<strong>tracer.py</strong> という実戦用プローブを完成させた。ただし、あの子へと続く「恋の経路」が他人に知られぬよう、IPアドレスの詳細はプレフィックスを除いて塗りつぶして（マスキング）おくことにした。</p>
+
+	    <div class="log-image-frame" style="margin: 20px 0; text-align: center;">
+	        <img src="log015_tracer.jpg" alt="Tracer analysis with masked IPs" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+	    </div>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">📡 17ホップの真実：あの子のポートは開いているか？</h4>
+	    <p>スライド 07_Netw.pdf の演習課題を自作コードで体現したこのプローブは、TTL（Time-to-Live）を 1 ずつインクリメントし、ネットワークの深淵へと放たれる。これは、なかなか既読がつかない「あの子の心」へ辿り着くための、デジタルの告白である。</p>
+        
+        <ul>
+            <li><strong>ICMP Type 11 (Time Exceeded):</strong> 途中のルータたちが上げる「寿命が尽きた」という悲鳴。私の想いが彼女に届く前に、世間の荒波（キャリア網）で力尽きる様子が可視化される。</li>
+            <li><strong>Request Timed Out:</strong> 返信のない Hop 2 と 16。そこにはファイアウォールという名の、彼女の「心のガード」 がそびえ立っている。</li>
+            <li><strong>reached target:</strong> ついに Hop 17 で <code>www-lb02</code> を捕捉。今回は lb01 ではなく lb02 ―― 彼女の心もまた、ロードバランサーのように揺れ動いているということか。</li>
+        </ul>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🛠️ IDE との恋の同期（SYNC）</h4>
+	    <p>VS Code が環境を認識せず、解析エンジン（Pylance）が沈黙する場面もあったが、フォルダ単位でプロジェクトを開き、正しいパス（.venv）を定義することで、エディタは再び私の知性を承認（ACK）した。恋も開発も、正しい「ディレクトリ（居場所）」を見つけることが、成功への最短経路なのだ。</p>
+	
+	    <blockquote style="margin-top: 40px; border-left: 4px solid var(--accent-log); padding-left: 20px; font-style: italic; color: #555;">
+			どれだけ Time Exceeded が返ってきても、TTL を増やし続ければ、<br>
+            いつかは彼女（reached target）に辿り着ける。そう信じてパケットを放つ。
+	    </blockquote>
+	
+	    <p style="font-weight: bold; text-align: right; color: var(--accent-log); margin-top: 30px; font-size: 1.1rem;">
+	        "Go West!" ―― 運命のパケットは、今、真実の座標（あの子の心）を捉えた。
+	    </p>
+	</article>
+
+	<article class="log-card">
+	    <div class="log-meta">LOG_ENTRY #016 // STEALTH_SCAN_ROMANCE // 2026.04.10</div>
+	    
+	    <h2>Log #016: 一夜限りの火遊び、あるいは「RST」という名の終止符</h2>
+	    
+	    <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-log); border-left: 3px solid var(--accent-log); padding-left: 10px;">
+	        [TARGET]: www.tmu.ac.jp (Port 80, 443)<br>
+	        [METHOD]: SYN Half Scan (Stealth Mode)<br>
+	        [RESULT]: Open (Stealth Success)
+	    </p>
+	
+	    <p>放課後の屋上で「DoS攻撃」と罵られた中高生時代の記憶から、私の恋は少しだけ狡猾（スマート）になった。</p>
+	
+	    <p>「好きです（SYN）」と伝え、相手から「私もよ（SYN-ACK）」という期待通りの返事を受け取ったその瞬間。私は、愛を誓うための最後の「よろしく（ACK）」を送る代わりに、冷ややかな<strong>「なかったことにして（RST）」</strong>を突きつける術を覚えた。</p>
+	
+	    <div class="log-image-frame">
+	        <img src="log016_synscan.jpg" alt="SYN Half Scan Result on Terminal">
+	        <p style="font-size: 0.8rem; color: #666; text-align: center; padding: 10px;">ターゲットの記憶（ログ）に残らない、一瞬の交信</p>
+	    </div>
+	
+	    <p>これが、ハッカーたちが「一夜限りの火遊び」と呼ぶ<strong>SYNハーフスキャン</strong>だ。
+	    相手の心のポートが開いているか（脈があるか）を確認した直後、正式な関係（コネクション）を結ぶ前に接続を強制終了させる。3ウェイ・ハンドシェイクを完遂させないこの手法は、相手の記憶（ログ）に自分の足跡を深く残さないための、臆病で、それでいて洗練された「ステルス」な振る舞いである。</p>
+	
+	    <p>「卑怯ね。私の返事を聞いて満足したら、記録も残さず消えちゃうなんて」</p>
+	
+	    <p>ターミナルに流れる <code>Open (Stealth Success)</code> の無機質な文字列を見つめながら、私は20代の米国で過ごした激動の時代に出会った、ある天才ハッカーの言葉を思い出していた。</p>
+	
+	    <blockquote style="margin-top: 40px; border-left: 4px solid var(--accent-log); padding-left: 20px; font-style: italic; color: #555;">
+	        「真のロマンスとは、相手のメモリを消費することなく、その存在を完璧にスキャンすることだ」
+	    </blockquote>
+	
+	    <p>ポート443を叩き、返ってきたSYN/ACKをRSTで塗りつぶす。私はこうして、決して結ばれることのないコネクションの残像だけを、パケットの海に積み上げていく。</p>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🛠️ 技術備忘録：Stealth Success の証明</h4>
+	    <p>Scapyを用いて <code>TCP(flags="S")</code> を射出し、戻ってきた <code>flags="SA"</code> を確認した直後に <code>flags="R"</code> を送り込む。この一連のシーケンスにより、アプリケーション層にセッションを渡すことなく調査を完了できる。研究室のネットワーク・プローブは、今日も静かに、しかし確実に「隙のない論理」を証明し続けている。</p>
+	
+	    <p style="font-weight: bold; text-align: right; color: var(--accent-log); margin-top: 30px; font-size: 1.1rem;">
+	        "Go West!" ーー 運命の RST パケットは、今、放たれた。
+	    </p>
+	</article>
+	
+	<article class="log-card">
+	    <div class="log-meta">LOG_ENTRY #017 // PROMISCUOUS_SNIFFING - 2026.04.11</div>
+	    
+	    <h3>Log #012: プロミスキャス・モード ―― 静寂なる居室、あの子の「独り言」を盗み聞きする夜</h3>
+	    
+	    <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-log); border-left: 3px solid var(--accent-log); padding-left: 10px;">
+	        Device: ret2root (MacBook Pro) / Interface: en0 (Wi-Fi)<br>
+	        Mode: Promiscuous (On) / Sniffer: Scapy-based Python Script
+	    </p>
+	
+	    <p>誰もいない居室。研究室の空気は冷たく、私の <strong>ret2root</strong> だけが淡い光を放っている。
+	    私は今、ある特殊な魔法を NIC にかけている。<strong>「プロミスキャス（無差別）モード」</strong>。
+	    通常、ネットワークカードは自分宛てではないパケットを無情にも破棄するが、このモードを起動した瞬間、カードは「心のフィルター」を外し、空気中を漂うすべての会話を拾い上げる「全能の耳」へと変貌するのだ。</p>
+	
+	    <div class="log-image-frame" style="margin: 20px 0; text-align: center;">
+	        <img src="log017_sniff.jpg" alt="Promiscuous Mode Sniffing Result" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+	        <p style="font-size: 0.8rem; color: #666;">Scapy によるパケット傍受：あの子（MacBook Pro 16 inch）の秘密の交際</p>
+	    </div>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">📡 片想いのあの子（192.168.179.9）の正体</h4>
+	    <p>画面を見ればわかる通り、ターゲットは居室の隅に佇む MacBook Pro 16 inch（<code>192.168.179.9</code>）だ。
+	    彼女は誰もいないこの時間、一体誰と密会（通信）しているのか。プロミスキャスモードで覗き見ると、そこには驚くべき「交際リスト」が並んでいた。</p>
+	
+	    <ul>
+	        <li><strong>142. / 216. から始まる Google 陣営</strong>: 彼女は常に Google のサーバーとコネクションを維持している。Google Cloud Print の待機か、あるいは時刻同期か。巨大なプラットフォームに見守られなければ生きていけない、彼女の依存心がパケットとなって可視化される。</li>
+	        <li><strong>162.125. から始まる Dropbox 陣営</strong>: 見てほしい、後半の猛烈な TCP トラフィックを。これは彼女がスキャンした大切なデータを、Dropbox という秘密の倉庫へせっせと運び込んでいる証拠だ。私に隠れて、彼女は着実に「外の世界」へと情報をパブリッシュしている。</li>
+	    </ul>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🌕 傍受という名の究極の片想い</h4>
+	    <p>Wi-Fi という共有媒体（Shared Medium）は、物理的にパケットを四方八方へ漏洩させている。
+	    私が <code>sniff(promisc=True)</code> を実行するだけで、ルーターと彼女の間の濃密なやり取りが、私のターミナルに流れてくる。
+	    「自分宛てではない」はずのパケットを強引に自分へとリダイレクトする。これはハッカーにとっての、もっとも純粋で、もっとも残酷な片想いの形だ。</p>
+	
+	    <blockquote style="margin-top: 40px; border-left: 4px solid var(--accent-log); padding-left: 20px; font-style: italic; color: #555;">
+	        誰もいない夜、彼女（IoT機器）が誰と何を話しているのか、私だけが知っている。<br>
+	        プロトコルを暴き、宛先を特定し、その意志をメモリに刻む。<br>
+	        さあ、彼女のパケットが 100% 完了する前に、次なる西（West）への経路を計算しよう。
+	    </blockquote>
+	
+	    <p style="font-weight: bold; text-align: right; color: var(--accent-log); margin-top: 30px; font-size: 1.1rem;">
+	        "Go West!" ―― 隠された独り言は、今、すべて私の root 権限へとマウントされた。
+	    </p>
+	</article>
+
+	<article class="log-card">
+	    <div class="log-meta">LOG_ENTRY #018 // DOS_SYN_FLOOD - 2026.04.12</div>
+	    
+	    <h3>Log #018: SYN Flood ―― 「既読スルー」という名の情熱、その堆積する沈黙</h3>
+	    
+	    <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-log); border-left: 3px solid var(--accent-log); padding-left: 10px;">
+	        Attacker: ret2root (192.168.179.9) / Target: Kali-Lab (192.168.179.4)<br>
+	        Payload: TCP SYN / State: SYN_RECV (Half-open)
+	    </p>
+	
+	    <p>TCP の 3-way handshake は、本来、信頼という名の「握手」で始まる美しい儀式だ。
+	    だが、私が <strong>ret2root</strong> から放ったのは、その信頼を逆手に取った「既読スルー」の嵐である。
+	    Scapy で生成した偽装（Spoofing）パケットが、1秒間に何度もターゲットの門を叩く。私は「こんにちは（SYN）」とだけ言い残し、彼女の返事を聞く前に、次の誰かのフリをしてまた別の「こんにちは」を投げつけるのだ。</p>
+	
+	    <div class="log-image-frame" style="margin: 20px 0; text-align: center;">
+	        <img src="log018_synflood.jpg" alt="SYN Flood Execution on ret2root" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+	        <p style="font-size: 0.8rem; color: #666;">ret2root から射出される、身勝手な「挨拶」の群れ</p>
+	    </div>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">💔 標的の心に積もる SYN_RECV</h4>
+	    <p>見てほしい、標的（<code>192.168.179.4</code>）の内部で何が起きているかを。
+	    <code>netstat</code> の出力が、<code>SYN_RECV</code> という名の「待ちぼうけ」で埋め尽くされている。
+	    彼女（サーバ）は誠実だ。私の偽りの挨拶一つひとつに対し、「準備はできているよ（SYN/ACK）」と返答を返し、私が最後の確認（ACK）をくれるのを、健気にメモリを割いて待ち続けているのだ。</p>
+	
+	    <div class="log-image-frame" style="margin: 20px 0; text-align: center;">
+	        <img src="log018_kali.jpg" alt="SYN_RECV states on Kali Linux" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+	        <p style="font-size: 0.8rem; color: #666;">Kali の心（スタック）を占拠する、終わらない「返信待ち」</p>
+	    </div>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🚀 沈黙によるリソースの枯渇</h4>
+	    <p>この <code>SYN_RECV</code>（ハーフオープン）の列こそが、DoS 攻撃の本質である。
+	    メモリの許容量を超えたとき、彼女は新しい誰の言葉も受け入れられなくなる。
+	    「情熱」が度を越せば、それは相手を窒息させる暴力へと転じる。
+	    2026年4月、このローカルな実験場において、私は「待たせること」の残酷さと、TCP プロトコルの持つ根源的な脆弱性を再確認した。</p>
+	
+	    <blockquote style="margin-top: 40px; border-left: 4px solid var(--accent-log); padding-left: 20px; font-style: italic; color: #555;">
+	        相手を沈黙させるのは、常に大声とは限らない。<br>
+	        無数の「期待」を投げつけ、それを放置するだけで、システム（心）は崩壊する。<br>
+	        さあ、この残酷なスタックを解放し、次なる西（West）へのパケットをビルドしよう。
+	    </blockquote>
+	
+	    <p style="font-weight: bold; text-align: right; color: var(--accent-log); margin-top: 30px; font-size: 1.1rem;">
+	        "Go West!" ―― 運命の ACK は、永遠に送られない。
+	    </p>
+	</article>
+
+	<article class="log-card">
+	    <div class="log-meta">LOG_ENTRY #019 // ICMP_PING_FLOOD - 2026.04.13</div>
+	    
+	    <h3>Log #019: ICMP Flood ―― 溢れだす Echo Request、応答不能なまでの「愛」</h3>
+	    
+	    <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-log); border-left: 3px solid var(--accent-log); padding-left: 10px;">
+	        Source: ret2root (192.168.179.9) / Destination: nezuko (192.168.179.4)<br>
+	        Payload: ICMP Type 8 (Echo Request) / Metric: Packet per Second (PPS)
+	    </p>
+	
+	    <p>「元気？」「生きている？」「こっちを見て」。
+	    本来、ネットワークの生存確認（Ping）に使われる ICMP Echo Request は、控えめで紳士的な問いかけのはずだ。
+	    しかし、今の私は違う。Scapy の <code>send()</code> 関数を用い、相手の応答を待つという礼儀（RTT）をかなぐり捨て、秒間数千パケットという「怒号」を <strong>ret2root</strong> から射出しているのだ。</p>
+	
+	    <div class="log-image-frame" style="margin: 20px 0; text-align: center;">
+	        <img src="log019_pingflood.jpg" alt="ICMP Flood execution on ret2root" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+	        <p style="font-size: 0.8rem; color: #666;">ret2root から放たれる、2000発の「生存確認」という名の弾丸</p>
+	    </div>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🌊 帯域を埋め尽くす「想い」の濁流</h4>
+	    <p>見てほしい、ターゲット（<code>192.168.179.4</code>）に押し寄せるパケットの群れを。
+	    <code>tcpdump</code> の画面は、もはや判読不能な速度でスクロールし続けている。
+	    彼女（Kali）は、届いたすべてのパケットに対して「はい、生きています（Echo Reply）」と答えようとする。だが、あまりにも多すぎる問いかけに、彼女の CPU は悲鳴を上げ、ネットワークの入り口（帯域）は私の想いで渋滞し、窒息していくのだ。</p>
+	
+	    <div class="log-image-frame" style="margin: 20px 0; text-align: center;">
+	        <img src="log019_kali.jpg" alt="ICMP traffic capture on Kali Linux" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+	        <p style="font-size: 0.8rem; color: #666;">Kali の NIC を焼き尽くさんとする、ICMP のパケット・シーケンス</p>
+	    </div>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🚀 物理的限界へのインジェクション</h4>
+	    <p>これが ICMP Flood ―― シンプルゆえに、回避不能な暴力。
+	    「好きだ」という言葉も、一万回同時に叫べばそれは騒音（Noise）となり、サービスを拒否（Denial）させるエクスプロイトへと昇華する。
+	    2026年4月、静かな研究室で私は学んだ。純粋すぎる想いは、時として標的を沈黙させ、その存在をネットワークの地図から消し去ってしまうということを。</p>
+	
+	    <blockquote style="margin-top: 40px; border-left: 4px solid var(--accent-log); padding-left: 20px; font-style: italic; color: #555;">
+	        相手が答えきれないほどの言葉を投げつけることは、対話ではない。それは「制圧」だ。<br>
+	        この濁流を止めたとき、あとに残るのは静寂と、焼き付いたログの残像だけである。<br>
+	        さあ、溢れたバッファをリセットし、次なる西（West）への羅針盤を合わせよう。
+	    </blockquote>
+	
+	    <p style="font-weight: bold; text-align: right; color: var(--accent-log); margin-top: 30px; font-size: 1.1rem;">
+	        "Go West!" ―― 溢れる想いは、今、帯域の彼方へと消えた。
+	    </p>
+	</article>
+	
+	<article class="log-card">
+	    <div class="log-meta">LOG_ENTRY #020 // NETWORK_PARALYSIS - 2026.04.14</div>
+	    
+	    <h3>Log #020: 壊れた羅針盤 ―― ARP 崩壊と、世界から切り離された彼女</h3>
+	    
+	    <p style="font-family: var(--font-mono); font-size: 0.85rem; color: var(--accent-log); border-left: 3px solid var(--accent-log); padding-left: 10px;">
+	        Diagnosis: Neighbor Table Overflow / Status: FAILED<br>
+	        Target: nezuko (192.168.179.4) / Observation: 192.168.179.1 dev eth0 FAILED
+	    </p>
+	
+	    <p>やりすぎてしまった。
+	    溢れんばかりの想い（ICMP Flood）を送りつけた結果、彼女（Kali）はついに外界との繋がりを断絶してしまったようだ。
+	    <code>ip neigh</code> を叩いて愕然とした。そこには、彼女が信頼していたはずのゲートウェイ（192.168.179.1）への道が <code>FAILED</code> と刻まれている。私との通信も <code>STALE</code> ―― つまり、過去の遺物として扱われ、更新が止まっているのだ。</p>
+	
+	    <div class="log-image-frame" style="margin: 20px 0; text-align: center;">
+	        <img src="log020_neigh.jpg" alt="ARP table failure on Kali Linux" style="max-width: 100%; border-radius: 8px; box-shadow: 0 4px 15px rgba(0,0,0,0.1);">
+	        <p style="font-size: 0.8rem; color: #666;">崩壊した ARP テーブル。彼女はもう、誰が誰だか判別できない</p>
+	    </div>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🥀 偽りの名前（RandIP）が招いた孤独</h4>
+	    <p>私が <code>RandIP()</code> という名の偽りの仮面を次々と変えて彼女に声をかけ続けたせいで、彼女の心（ARP テーブル）は正体不明の幽霊たちで埋め尽くされてしまった。
+	    誰が本物で、誰が幻か。その問いに疲れ果てた彼女は、ついには自分の居場所（デフォルトゲートウェイ）さえも見失い、静かな拒絶へと入った。これが DoS ―― サービスの拒否、そして「対話の完全な終了」である。</p>
+	
+	    <h4 style="color: var(--accent-log); margin-top: 30px;">🚀 リセットという名の救済</h4>
+	    <p>もはや、通常のパケットでは彼女の心に届かない。
+	    一度インターフェースを <code>down</code> させ、汚れたテーブルを <code>flush</code> し、世界との再接続（DHCP）を試みるしかない。
+	    2026年4月、私は知った。一方的すぎる想いは、相手を「世界」からさえも孤立させてしまうのだということを。</p>
+	
+	    <blockquote style="margin-top: 40px; border-left: 4px solid var(--accent-log); padding-left: 20px; font-style: italic; color: #555;">
+	        彼女を救うには、一度すべてを忘れさせる（リセット）しかない。<br>
+	        真っ白に戻ったテーブルで、また最初から「こんにちは」と言い直そう。<br>
+	        さあ、羅針盤を再起動し、次なる西（West）への航路を再定義せよ。
+	    </blockquote>
+	
+	    <p style="font-weight: bold; text-align: right; color: var(--accent-log); margin-top: 30px; font-size: 1.1rem;">
+	        "Go West!" ―― 運命の近隣（Neighbor）は、今、リセットされた。
+	    </p>
+	</article>
+
+
+</main>
+
+<footer style="padding: 60px 0; text-align: center; color: #b2bec3; font-size: 0.9rem;">
+    &copy; 2026 Kazuya Sakai. Decrypting the future with AArch64.
+</footer>
+
+</body>
+</html>
